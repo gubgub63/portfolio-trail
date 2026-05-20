@@ -617,12 +617,41 @@ section[id] {
     position: relative;
 }
 
+.projet-card__media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.92) contrast(0.96);
+    transform: scale(1.01);
+    transition:
+        transform 0.45s var(--ease-out),
+        filter 0.45s var(--ease-out);
+}
+
+.projet-card__media--endurx img {
+    object-position: center top;
+}
+
+.projet-card__media--app img {
+    object-position: center 8%;
+}
+
+.projet-card:hover .projet-card__media img {
+    filter: saturate(1) contrast(1);
+    transform: scale(1.045);
+}
+
 .projet-card__num {
+    position: relative;
+    z-index: 1;
     font-family: var(--f-mono);
     font-size: 5rem;
     font-weight: 700;
-    color: var(--mist);
-    opacity: 0.28;
+    color: white;
+    opacity: 0.72;
+    text-shadow: 0 10px 34px rgba(15, 25, 30, 0.35);
     user-select: none;
     transition: opacity 0.4s var(--ease-out);
 }
