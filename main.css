@@ -638,6 +638,10 @@ section[id] {
     object-position: center 8%;
 }
 
+.projet-card__media--portfolio img {
+    object-position: center center;
+}
+
 .projet-card:hover .projet-card__media img {
     filter: saturate(1) contrast(1);
     transform: scale(1.045);
