@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enzo Gubbiotti — Développeur & Ultra-Traileur</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./main.css">
+</head>
+
+<body>
+
+    <header class="site-nav">
+        <nav class="site-nav__inner" aria-label="Navigation principale">
+            <a href="#accueil" class="site-nav__link" data-nav-link>Accueil</a>
+            <a href="#profil" class="site-nav__link" data-nav-link>Profil</a>
+            <a href="#competences" class="site-nav__link" data-nav-link>Compétences</a>
+            <a href="#projets" class="site-nav__link" data-nav-link>Projets</a>
+            <a href="#trail" class="site-nav__link" data-nav-link>Trail</a>
+            <a href="#contact" class="site-nav__link" data-nav-link>Contact</a>
+        </nav>
+    </header>
+
+    <!-- ═══ HERO ══════════════════════════════════════════════════════ -->
+    <section class="hero-section" id="accueil" data-nav-section>
+        <div class="hero-inner">
+            <span class="hero-eyebrow">45°50'N — 6°52'E · Alpes</span>
+            <h1 class="hero-title">
+                <em>Enzo</em><br>
+                Gubbiotti
+            </h1>
+            <p class="hero-sub">Développeur Full Stack spécialisé E-commerce &nbsp;·&nbsp; Ultra-Traileur</p>
+            <div class="hero-scroll" aria-hidden="true"><span></span></div>
+        </div>
+    </section>
+
+    <!-- ═══ PROFIL ═════════════════════════════════════════════════════ -->
+    <section class="section-profil" id="profil" data-nav-section data-parallax="0.12" data-parallax-limit="80">
+        <div class="profil-inner">
+
+            <div class="profil-photo-col">
+                <figure class="profil-figure reveal">
+                    <img src="./img/moi.jpg" alt="Enzo Gubbiotti en tenue de trail" loading="lazy">
+                    <figcaption class="profil-figure__label" aria-hidden="true">Alpes · 2024</figcaption>
+                </figure>
+            </div>
+
+            <div class="profil-text-col">
+                <div class="section-label reveal">À propos</div>
+                <h2 class="profil-heading reveal reveal-stagger" style="--delay:100ms">
+                    Deux mondes,<br><em>une même logique.</em>
+                </h2>
+                <div class="draw-line reveal reveal-stagger" style="--delay:180ms"></div>
+                <p class="profil-bio reveal reveal-stagger" style="--delay:260ms">
+                    Je suis Enzo Gubbiotti, 21 ans. Développeur passionné, je me spécialise sur WordPress,
+                    WooCommerce, Shopify et les expériences e-commerce rapides, propres et faciles à prendre en main.
+                </p>
+                <p class="profil-bio reveal reveal-stagger" style="--delay:340ms">
+                    En parallèle, je poursuis un objectif personnel fort&nbsp;: progresser en ultra‑trail. En 2025,
+                    j'ai couru 1&nbsp;200&nbsp;km avec la même approche que dans mes projets&nbsp;: discipline,
+                    constance et envie d'aller plus loin.
+                </p>
+                <div class="profil-stats reveal reveal-stagger" style="--delay:440ms">
+                    <div class="stat-item">
+                        <div class="stat-number">
+                            <span class="stat-value" data-count="1200">0</span>
+                            <span class="stat-unit">km</span>
+                        </div>
+                        <span class="stat-label">courus en 2025</span>
+                    </div>
+                    <div class="stat-sep" aria-hidden="true"></div>
+                    <div class="stat-item">
+                        <div class="stat-number">
+                            <span class="stat-value" data-count="3">0</span>
+                            <span class="stat-unit">ans</span>
+                        </div>
+                        <span class="stat-label">de développement web</span>
+                    </div>
+                    <div class="stat-sep" aria-hidden="true"></div>
+                    <div class="stat-item">
+                        <div class="stat-number">
+                            <span class="stat-value" data-count="80">0</span>
+                            <span class="stat-unit">km</span>
+                        </div>
+                        <span class="stat-label">distance trail validée</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Ridge divider -->
+    <div class="ridge-divider" aria-hidden="true">
+        <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path
+                d="M0 56 L0 42 L120 28 L240 44 L360 16 L480 38 L600 10 L720 36 L840 6 L960 30 L1080 18 L1200 40 L1320 14 L1440 34 L1440 56 Z"
+                fill="currentColor" opacity="0.04" />
+            <polyline
+                points="0,42 120,28 240,44 360,16 480,38 600,10 720,36 840,6 960,30 1080,18 1200,40 1320,14 1440,34"
+                fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.18" />
+        </svg>
+    </div>
+
+    <!-- ═══ COMPÉTENCES ════════════════════════════════════════════════ -->
+    <section class="section-competences" id="competences" data-nav-section>
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-label reveal">Compétences</div>
+                <h2 class="section-heading reveal reveal-stagger" style="--delay:80ms">Stack technique</h2>
+            </div>
+
+            <div class="skills-cols">
+                <div class="reveal reveal-stagger" style="--delay:100ms">
+                    <h3 class="skills-group-title">Développement</h3>
+                    <ul class="skill-rows">
+                        <li class="skill-row" style="--level:0.95">
+                            <div class="skill-row__top">
+                                <span class="skill-row__name">WordPress / WooCommerce</span>
+                                <span class="skill-row__tag">Expert</span>
+                            </div>
+                            <div class="skill-row__bar"><span class="skill-row__fill"></span></div>
+                        </li>
+                        <li class="skill-row" style="--level:0.88">
+                            <div class="skill-row__top">
+                                <span class="skill-row__name">HTML / CSS</span>
+                                <span class="skill-row__tag">Avancé</span>
+                            </div>
+                            <div class="skill-row__bar"><span class="skill-row__fill"></span></div>
+                        </li>
+                        <li class="skill-row" style="--level:0.80">
+                            <div class="skill-row__top">
+                                <span class="skill-row__name">JavaScript</span>
+                                <span class="skill-row__tag">Avancé</span>
+                            </div>
+                            <div class="skill-row__bar"><span class="skill-row__fill"></span></div>
+                        </li>
+                        <li class="skill-row" style="--level:0.72">
+                            <div class="skill-row__top">
+                                <span class="skill-row__name">PHP</span>
+                                <span class="skill-row__tag">Expert</span>
+                            </div>
+                            <div class="skill-row__bar"><span class="skill-row__fill"></span></div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="reveal reveal-stagger" style="--delay:220ms">
+                    <h3 class="skills-group-title">Outils & plateformes</h3>
+                    <ul class="skill-rows">
+                        <li class="skill-row" style="--level:0.90">
+                            <div class="skill-row__top">
+                                <span class="skill-row__name">WooCommerce</span>
+                                <span class="skill-row__tag">Expert</span>
+                            </div>
+                            <div class="skill-row__bar"><span class="skill-row__fill"></span></div>
+                        </li>
+                        <li class="skill-row" style="--level:0.78">
+                            <div class="skill-row__top">
+                                <span class="skill-row__name">Git / GitHub</span>
+                                <span class="skill-row__tag">Avancé</span>
+                            </div>
+                            <div class="skill-row__bar"><span class="skill-row__fill"></span></div>
+                        </li>
+                        <li class="skill-row" style="--level:0.70">
+                            <div class="skill-row__top">
+                                <span class="skill-row__name">Figma</span>
+                                <span class="skill-row__tag">Intermédiaire</span>
+                            </div>
+                            <div class="skill-row__bar"><span class="skill-row__fill"></span></div>
+                        </li>
+                        <li class="skill-row" style="--level:0.65">
+                            <div class="skill-row__top">
+                                <span class="skill-row__name">MySQL / MariaDB</span>
+                                <span class="skill-row__tag">Intermédiaire</span>
+                            </div>
+                            <div class="skill-row__bar"><span class="skill-row__fill"></span></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ PROJETS ════════════════════════════════════════════════════ -->
+    <section class="section-projets" id="projets" data-nav-section>
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-label reveal">Projets</div>
+                <h2 class="section-heading reveal reveal-stagger" style="--delay:80ms">Travaux récents</h2>
+            </div>
+
+            <div class="projets-grid">
+
+                <article class="projet-card reveal reveal-stagger" style="--delay:0ms"
+                    data-title="ENDUR-X"
+                    data-description="Création d'une boutique e-commerce Shopify pour ENDUR-X, pensée pour vendre des produits liés à l'endurance et au trail. Travail sur l'identité de marque, la structure catalogue, l'expérience d'achat et la mise en valeur des produits.">
+                    <div class="projet-card__media">
+                        <div class="projet-card__num" aria-hidden="true">01</div>
+                    </div>
+                    <div class="projet-card__body">
+                        <span class="projet-card__type">E-commerce · Shopify</span>
+                        <h3 class="projet-card__title">ENDUR-X</h3>
+                        <p class="projet-card__desc">Boutique Shopify dédiée à l'endurance&nbsp;: identité, catalogue,
+                            parcours d'achat et présentation produit.</p>
+                        <span class="projet-card__cta">Voir le projet →</span>
+                    </div>
+                </article>
+
+                <article class="projet-card reveal reveal-stagger" style="--delay:100ms"
+                    data-title="Application nutrition trail"
+                    data-description="Application mobile personnelle pour gérer ma nutrition en trail : préparation des apports, suivi de l'hydratation, organisation des ravitaillements et aide à la stratégie de course sur longue distance.">
+                    <div class="projet-card__media">
+                        <div class="projet-card__num" aria-hidden="true">02</div>
+                    </div>
+                    <div class="projet-card__body">
+                        <span class="projet-card__type">Mobile · Nutrition trail</span>
+                        <h3 class="projet-card__title">App nutrition trail</h3>
+                        <p class="projet-card__desc">Outil personnel pour planifier les apports, l'hydratation et les
+                            ravitaillements en course.</p>
+                        <span class="projet-card__cta">Voir le projet →</span>
+                    </div>
+                </article>
+
+                <article class="projet-card reveal reveal-stagger" style="--delay:200ms" data-title="Ce portfolio"
+                    data-description="Design et développement de ce portfolio from scratch. Animations CSS/JS sur-mesure, parallax, zéro dépendance externe, direction artistique alpine et publication prête pour GitHub Pages.">
+                    <div class="projet-card__media">
+                        <div class="projet-card__num" aria-hidden="true">03</div>
+                    </div>
+                    <div class="projet-card__body">
+                        <span class="projet-card__type">Portfolio · Vanilla JS</span>
+                        <h3 class="projet-card__title">Ce portfolio</h3>
+                        <p class="projet-card__desc">Design et développement from scratch. Animations CSS/JS, parallax,
+                            zéro framework.</p>
+                        <span class="projet-card__cta">Voir le projet →</span>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ TRAIL ══════════════════════════════════════════════════════ -->
+    <section class="section-trail" id="trail" data-nav-section>
+        <div class="trail-ghost-text" aria-hidden="true">TRAIL</div>
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-label reveal">Ultra-Trail</div>
+                <h2 class="section-heading reveal reveal-stagger" style="--delay:80ms">En montagne</h2>
+            </div>
+
+            <blockquote class="trail-manifesto reveal reveal-stagger" style="--delay:140ms">
+                <em>Courir en montagne, c'est apprendre à gérer l'effort, l'inconfort et l'incertitude — les mêmes
+                    compétences qui font un bon développeur.</em>
+            </blockquote>
+
+            <div class="trail-races">
+                <div class="race-item reveal reveal-stagger" style="--delay:200ms">
+                    <div class="race-left">
+                        <span class="race-name">VVX 2026</span>
+                        <span class="race-year">Terminé</span>
+                    </div>
+                    <div class="race-stats">
+                        <span class="race-stat"><span class="race-val">80</span> km</span>
+                        <span class="race-stat"><span class="race-val">2 100</span> m D+</span>
+                        <span class="race-badge">12h01</span>
+                    </div>
+                </div>
+                <div class="race-sep"></div>
+                <div class="race-item reveal reveal-stagger" style="--delay:280ms">
+                    <div class="race-left">
+                        <span class="race-name">Grand Trail d'Auvergne</span>
+                        <span class="race-year">Terminé</span>
+                    </div>
+                    <div class="race-stats">
+                        <span class="race-stat"><span class="race-val">80</span> km</span>
+                        <span class="race-stat"><span class="race-val">3 300</span> m D+</span>
+                        <span class="race-badge">10h12</span>
+                    </div>
+                </div>
+                <div class="race-sep"></div>
+                <div class="race-item reveal reveal-stagger" style="--delay:360ms">
+                    <div class="race-left">
+                        <span class="race-name">Objectif UTPMA</span>
+                        <span class="race-year">À venir</span>
+                    </div>
+                    <div class="race-stats">
+                        <span class="race-stat"><span class="race-val">115</span> km</span>
+                        <span class="race-stat"><span class="race-val">5 500</span> m D+</span>
+                        <span class="race-badge race-badge--target">Ultra</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ CONTACT ════════════════════════════════════════════════════ -->
+    <section class="section-contact" id="contact" data-nav-section>
+        <div class="section-inner">
+            <div class="contact-content">
+                <div class="section-label reveal">Contact</div>
+                <h2 class="contact-heading reveal reveal-stagger" style="--delay:80ms">
+                    Un projet&nbsp;?<br><em>Parlons-en.</em>
+                </h2>
+                <div class="draw-line reveal reveal-stagger" style="--delay:160ms"></div>
+                <a href="mailto:enzo.gubbiotti@gmail.com" class="contact-email reveal reveal-stagger"
+                    style="--delay:240ms">
+                    enzo.gubbiotti@gmail.com
+                </a>
+                <div class="contact-socials reveal reveal-stagger" style="--delay:320ms">
+                    <a href="#" class="contact-social-link">GitHub</a>
+                    <span aria-hidden="true">·</span>
+                    <a href="#" class="contact-social-link">LinkedIn</a>
+                    <span aria-hidden="true">·</span>
+                    <a href="#" class="contact-social-link">Strava</a>
+                </div>
+            </div>
+        </div>
+        <footer class="site-footer">
+            <span>© 2026 Enzo Gubbiotti</span>
+            <span class="footer-sep" aria-hidden="true"></span>
+            <span>45°50'N &nbsp;6°52'E</span>
+        </footer>
+    </section>
+
+    <!-- ═══ MODAL PROJET ════════════════════════════════════════════════ -->
+    <div class="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-overlay" data-modal-close></div>
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title"></h3>
+                <button class="modal-close" data-modal-close aria-label="Fermer">✕</button>
+            </div>
+            <p class="modal-desc" id="modal-desc"></p>
+        </div>
+    </div>
+
+    <script src="./main.js"></script>
+</body>
+
+</html>
