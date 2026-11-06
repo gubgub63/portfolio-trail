@@ -1,0 +1,80 @@
+---
+import Icon from '../Icon.astro';
+import { trailCopy } from '../../data/trail-copy';
+import { trailSocial } from '../../data/trail-social';
+import { sitePath } from '../../lib/paths';
+import { formatDate, formatNumber } from '../../lib/format';
+import type { Lang } from '../../lib/routes';
+
+interface Props {
+    lang: Lang;
+    heading: readonly [string, string];
+    id?: string;
+}
+const { lang, heading, id = 'content-heading' } = Astro.props;
+const copy = trailCopy[lang];
+---
+
+<section class="trail-journal" aria-labelledby={id}>
+    <div class="journal-inner trail-wrap">
+        <div class="journal-copy">
+            <h2 id={id}>
+                {heading[0]}
+                <br />
+                <span>{heading[1]}</span>
+            </h2>
+            <p class="trail-lead">{copy.contentIntro}</p>
+            <a
+                class="trail-text-link"
+                href={trailSocial.profileUrl}
+                target="_blank"
+                rel="noreferrer"
+            >
+                {trailSocial.name} / {trailSocial.handle}
+                <Icon name="arrow" size={20} />
+            </a>
+            <dl class="journal-audience">
+                <div>
+                    <dd>{formatNumber(trailSocial.followers, lang)}</dd>
+                    <dt>{copy.followersLabel}</dt>
+                </div>
+                <div>
+                    <dd>{trailSocial.likesDisplay[lang]}</dd>
+                    <dt>{copy.likesLabel}</dt>
+                </div>
+            </dl>
+            <p class="trail-caption">
+                {copy.socialSnapshot}{' '}
+                <time datetime={trailSocial.retrievedAt}>
+                    {formatDate(trailSocial.retrievedAt, lang)}
+                </time>
+                .
+            </p>
+        </div>
+        <a
+            class="journal-video"
+            href={trailSocial.featuredPost.url}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`${trailSocial.featuredPost.title[lang]} · ${copy.watchPost}`}
+        >
+            <img
+                src={sitePath(trailSocial.featuredPost.image)}
+                alt={copy.featuredPostAlt}
+                width={trailSocial.featuredPost.width}
+                height={trailSocial.featuredPost.height}
+                loading="lazy"
+            />
+            <span class="journal-play">
+                <Icon name="play" size={24} />
+            </span>
+            <span class="journal-video-label">
+                <strong>{trailSocial.featuredPost.title[lang]}</strong>
+                <span>
+                    {copy.watchPost}
+                    <Icon name="arrow" size={18} />
+                </span>
+            </span>
+        </a>
+    </div>
+</section>

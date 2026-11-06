@@ -1,0 +1,80 @@
+---
+import Icon from '../Icon.astro';
+import { trailCopy } from '../../data/trail-copy';
+import trailResults from '../../data/trail-results.json';
+import { formatDate, formatPlacing } from '../../lib/format';
+import type { Lang } from '../../lib/routes';
+
+const { lang } = Astro.props as { lang: Lang };
+const copy = trailCopy[lang];
+const indexLabels: Record<string, string> = {
+    general: lang === 'fr' ? 'Général' : 'Overall',
+    '20k': '20K',
+    '50k': '50K',
+    '100k': '100K',
+    '100m': '100M',
+};
+---
+
+<div id="utmb" class="results-index" aria-labelledby="utmb-heading">
+    <div class="results-index-heading">
+        <h2 id="utmb-heading">UTMB Index</h2>
+        <a class="trail-text-link" href={trailResults.profileUrl} target="_blank" rel="noreferrer">
+            {copy.viewProfile}
+            <Icon name="arrow" size={16} />
+        </a>
+    </div>
+    <dl class="runner-indexes">
+        {trailResults.indexes.map((category) => (
+            <div class:list={{ 'index-overall': category.piCategory === 'general' }}>
+                <dt>{indexLabels[category.piCategory]}</dt>
+                <dd>{category.index ?? <span class="index-unrated">{copy.notRated}</span>}</dd>
+            </div>
+        ))}
+    </dl>
+    <p class="source-note">
+        {copy.publishedProfile} ·{' '}
+        <time datetime={trailResults.retrievedAt}>
+            {formatDate(trailResults.retrievedAt, lang)}
+        </time>
+    </p>
+</div>
+<div class="results-table-scroll" tabindex="0" role="region" aria-label={copy.resultsRegion}>
+    <table>
+        <caption>{copy.resultsCaption}</caption>
+        <thead>
+            <tr>
+                <th scope="col">{copy.race}</th>
+                <th scope="col">{copy.distance}</th>
+                <th scope="col">{copy.time}</th>
+                <th scope="col">{indexLabels.general}</th>
+                <th scope="col">{copy.category}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {trailResults.results.map((result) => (
+                <tr>
+                    <th scope="row">
+                        {result.raceName}
+                        <time datetime={result.dateIso}>{formatDate(result.dateIso, lang)}</time>
+                    </th>
+                    <td>{Number(result.distance)} km</td>
+                    <td>{result.isDnf ? copy.didNotFinish : result.time}</td>
+                    <td>{result.isDnf ? '—' : `${result.rank} / ${result.totalRanked}`}</td>
+                    <td>
+                        {result.categoryPlacing
+                            ? `${formatPlacing(result.categoryPlacing.place, lang)} · ${result.categoryPlacing.category}`
+                            : '—'}
+                    </td>
+                </tr>
+            ))}
+        </tbody>
+    </table>
+</div>
+<p class="source-note">
+    {copy.resultsSourceBefore}{' '}
+    <a href={trailResults.profileUrl} target="_blank" rel="noreferrer">
+        {copy.resultsSourceLink}
+    </a>{' '}
+    {copy.categorySource}
+</p>

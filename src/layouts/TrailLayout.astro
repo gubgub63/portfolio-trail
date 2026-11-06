@@ -1,0 +1,275 @@
+---
+import Icon from '../components/Icon.astro';
+import ContactBand from '../components/trail/ContactBand.astro';
+import Credits from '../components/trail/Credits.astro';
+import { sitePath } from '../lib/paths';
+import { href, navSection, routes, type Alternates, type Lang, type RouteKey } from '../lib/routes';
+import { siteCopy } from '../data/site-copy';
+import { trailSocial } from '../data/trail-social';
+import trailResults from '../data/trail-results.json';
+import '../styles/trail.css';
+import displayFont from '../assets/fonts/manrope-400.woff2?url';
+
+interface Props {
+    lang: Lang;
+    title: string;
+    description: string;
+    /** Page key, used for navigation state and language alternates. */
+    page?: RouteKey;
+    /** Explicit language alternates (unprefixed paths), e.g. for journal posts. */
+    alternates?: Partial<Alternates>;
+    image?: string;
+    type?: 'website' | 'article';
+    jsonLd?: Record<string, unknown>;
+    /** Hide the shared contact band (pages with their own contact section). */
+    contact?: boolean;
+    contactHref?: string;
+}
+const {
+    lang,
+    title,
+    description,
+    page,
+    alternates,
+    image = '/images/trail/enzo-utmb-banner.webp',
+    type = 'website',
+    jsonLd,
+    contact = true,
+    contactHref,
+} = Astro.props;
+const fr = lang === 'fr';
+const t = siteCopy[lang];
+
+const pagePaths: Partial<Alternates> = alternates ?? (page ? routes[page] : routes.home);
+const englishPath = pagePaths.en ?? routes.home.en;
+const frenchPath = pagePaths.fr ?? routes.home.fr;
+const currentPath = fr ? frenchPath : englishPath;
+const absoluteUrl = (path: string) => new URL(sitePath(path), Astro.site || Astro.url).href;
+const activeSection = page ? (navSection[page] ?? page) : undefined;
+
+const navItems = (
+    ['about', 'projects', 'results', 'blog', 'partnerships', 'coaching'] as const
+).map((key) => ({ key, label: t.nav[key], href: href(key, lang), current: activeSection === key }));
+const developerUrl = fr
+    ? 'https://gubgub63.github.io/mon-portfolio/fr/'
+    : 'https://gubgub63.github.io/mon-portfolio/';
+---
+
+<!doctype html>
+<html lang={lang}>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="theme-color" content="#f4f1e9" />
+        <link rel="canonical" href={absoluteUrl(currentPath)} />
+        {pagePaths.en && <link rel="alternate" hreflang="en" href={absoluteUrl(pagePaths.en)} />}
+        {pagePaths.fr && <link rel="alternate" hreflang="fr" href={absoluteUrl(pagePaths.fr)} />}
+        <link rel="alternate" hreflang="x-default" href={absoluteUrl(englishPath)} />
+        <meta property="og:type" content={type} />
+        <meta property="og:site_name" content="Enzo Gubbiotti · Trail" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={absoluteUrl(currentPath)} />
+        <meta property="og:locale" content={fr ? 'fr_FR' : 'en_GB'} />
+        <meta property="og:image" content={absoluteUrl(image)} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <link
+            rel="alternate"
+            type="application/rss+xml"
+            title={t.footer.rss}
+            href={sitePath(`${routes.blog[lang]}rss.xml`)}
+        />
+        <link rel="icon" href={sitePath('/favicon.svg')} />
+        <link rel="sitemap" href={sitePath('/sitemap-index.xml')} />
+        <link rel="preload" href={displayFont} as="font" type="font/woff2" crossorigin />
+        {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+        <script is:inline>
+            try {
+                const stored = localStorage.getItem('theme');
+                if (
+                    stored === 'dark' ||
+                    (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)
+                )
+                    document.documentElement.dataset.theme = 'dark';
+            } catch {}
+        </script>
+    </head>
+    <body class="trail-site">
+        <a class="skip-link" href="#main">
+            {t.nav.skip}
+        </a>
+        <header class="trail-header">
+            <nav class="trail-nav" aria-label={t.nav.label}>
+                <a
+                    class="trail-wordmark"
+                    href={href('home', lang)}
+                    aria-current={page === 'home' ? 'page' : undefined}
+                >
+                    <Icon name="mountain" size={28} />
+                    <span>Enzo Gubbiotti</span>
+                </a>
+                <ul class="trail-nav-sections">
+                    {navItems.map((item) => (
+                        <li>
+                            <a href={item.href} aria-current={item.current ? 'page' : undefined}>
+                                {item.label}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+                <div class="trail-nav-tools">
+                    <a class="trail-nav-contact" href="#contact">
+                        {t.nav.contact}
+                        <Icon name="arrow" size={16} />
+                    </a>
+                    <div class="trail-languages" role="group" aria-label={t.nav.language}>
+                        <a
+                            href={sitePath(frenchPath)}
+                            lang="fr"
+                            hreflang="fr"
+                            aria-current={fr ? 'true' : undefined}
+                        >
+                            FR
+                        </a>
+                        <a
+                            href={sitePath(englishPath)}
+                            lang="en"
+                            hreflang="en"
+                            aria-current={!fr ? 'true' : undefined}
+                        >
+                            EN
+                        </a>
+                    </div>
+                    <button class="trail-theme" type="button" aria-pressed="false">
+                        <Icon name="sun" size={18} />
+                    </button>
+                    <details class="trail-menu">
+                        <summary aria-label={t.nav.menu}>
+                            <span class="trail-menu-icon" aria-hidden="true"></span>
+                            <span class="trail-menu-label">{t.nav.menu}</span>
+                        </summary>
+                        <div class="trail-menu-panel">
+                            <ul>
+                                <li>
+                                    <a
+                                        href={href('home', lang)}
+                                        aria-current={page === 'home' ? 'page' : undefined}
+                                    >
+                                        {fr ? 'Accueil' : 'Home'}
+                                    </a>
+                                </li>
+                                {navItems.map((item) => (
+                                    <li>
+                                        <a
+                                            href={item.href}
+                                            aria-current={item.current ? 'page' : undefined}
+                                        >
+                                            {item.label}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                            <a class="trail-action" href="#contact">
+                                {t.nav.contact}
+                                <Icon name="arrow" size={18} />
+                            </a>
+                        </div>
+                    </details>
+                </div>
+            </nav>
+        </header>
+        <main id="main">
+            <slot />
+        </main>
+        {contact && <ContactBand lang={lang} href={contactHref} />}
+        <footer class="trail-footer">
+            <div class="trail-footer-grid trail-wrap">
+                <div class="trail-footer-brand">
+                    <a class="trail-wordmark" href={href('home', lang)}>
+                        <Icon name="mountain" size={26} />
+                        <span>Enzo Gubbiotti</span>
+                    </a>
+                    <p>{t.footer.tagline}</p>
+                </div>
+                <nav aria-label={t.footer.explore}>
+                    <p class="trail-footer-title">{t.footer.explore}</p>
+                    <ul>
+                        {navItems.map((item) => (
+                            <li>
+                                <a href={item.href}>{item.label}</a>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+                <div>
+                    <p class="trail-footer-title">{t.footer.follow}</p>
+                    <ul>
+                        <li>
+                            <a href={trailSocial.profileUrl} target="_blank" rel="noreferrer">
+                                TikTok · {trailSocial.handle}
+                            </a>
+                        </li>
+                        <li>
+                            <a href={trailResults.profileUrl} target="_blank" rel="noreferrer">
+                                UTMB World
+                            </a>
+                        </li>
+                        <li>
+                            <a href={sitePath(`${routes.blog[lang]}rss.xml`)}>{t.footer.rss}</a>
+                        </li>
+                        <li>
+                            <a href={developerUrl}>{t.footer.developer}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="trail-footer-base trail-wrap">
+                <Credits lang={lang} />
+                <p>© {new Date().getFullYear()} Enzo Gubbiotti</p>
+                <a class="trail-back-top" href="#main" aria-label={t.footer.backToTop}>
+                    <Icon name="chevron" size={19} />
+                </a>
+            </div>
+        </footer>
+        <script>
+            const themeButton = document.querySelector<HTMLButtonElement>('.trail-theme');
+            const fr = document.documentElement.lang === 'fr';
+            function syncTheme() {
+                const dark = document.documentElement.dataset.theme === 'dark';
+                themeButton?.setAttribute('aria-pressed', String(dark));
+                themeButton?.setAttribute(
+                    'aria-label',
+                    fr
+                        ? `Activer le thème ${dark ? 'clair' : 'sombre'}`
+                        : `Switch to ${dark ? 'light' : 'dark'} theme`,
+                );
+                document
+                    .querySelector('meta[name="theme-color"]')
+                    ?.setAttribute('content', dark ? '#191c18' : '#f4f1e9');
+            }
+            syncTheme();
+            themeButton?.addEventListener('click', () => {
+                const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+                document.documentElement.dataset.theme = theme;
+                try {
+                    localStorage.setItem('theme', theme);
+                } catch {}
+                syncTheme();
+            });
+
+            // Close the mobile menu after choosing an in-page destination or pressing Escape.
+            const menu = document.querySelector<HTMLDetailsElement>('.trail-menu');
+            menu?.querySelectorAll('a').forEach((link) =>
+                link.addEventListener('click', () => menu.removeAttribute('open')),
+            );
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && menu?.open) {
+                    menu.removeAttribute('open');
+                    menu.querySelector('summary')?.focus();
+                }
+            });
+        </script>
+    </body>
+</html>

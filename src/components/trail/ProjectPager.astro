@@ -1,0 +1,36 @@
+---
+import Icon from '../Icon.astro';
+import { siteCopy } from '../../data/site-copy';
+import { projectNames, projectOrder, type ProjectId } from '../../data/projects';
+import { href, type Lang } from '../../lib/routes';
+
+interface Props {
+    current: ProjectId;
+    lang: Lang;
+}
+const { current, lang } = Astro.props;
+const t = siteCopy[lang].projects;
+const index = projectOrder.indexOf(current);
+const previous = projectOrder[(index - 1 + projectOrder.length) % projectOrder.length];
+const next = projectOrder[(index + 1) % projectOrder.length];
+---
+
+<nav class="project-pager trail-wrap" aria-label={t.calendar}>
+    <a href={href(previous, lang)} rel="prev">
+        <span>{t.previous}</span>
+        <strong>
+            <Icon name="arrow" size={18} />
+            {projectNames[previous]}
+        </strong>
+    </a>
+    <a class="project-pager-all" href={href('projects', lang)}>
+        {t.back}
+    </a>
+    <a href={href(next, lang)} rel="next">
+        <span>{t.next}</span>
+        <strong>
+            {projectNames[next]}
+            <Icon name="arrow" size={18} />
+        </strong>
+    </a>
+</nav>

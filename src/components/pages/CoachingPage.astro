@@ -1,0 +1,84 @@
+---
+import TrailLayout from '../../layouts/TrailLayout.astro';
+import Icon from '../Icon.astro';
+import PageHeader from '../trail/PageHeader.astro';
+import { siteCopy } from '../../data/site-copy';
+import { profile } from '../../data/trail-profile';
+import { mailto } from '../../lib/mailto';
+import type { Lang } from '../../lib/routes';
+
+const { lang } = Astro.props as { lang: Lang };
+const c = siteCopy[lang].coaching;
+const waitlistHref = mailto(profile.email, c.waitlistSubject, c.waitlistBody);
+---
+
+<TrailLayout
+    lang={lang}
+    title={c.title}
+    description={c.description}
+    page="coaching"
+    contactHref={waitlistHref}
+>
+    <PageHeader kicker={c.kicker} heading={c.heading} intro={c.intro}>
+        <a class="trail-action" href="#waitlist">
+            {c.waitlistTitle}
+            <Icon name="arrow" size={18} />
+        </a>
+    </PageHeader>
+
+    <section class="trail-wrap coaching-approach" aria-labelledby="approach-heading">
+        <h2 id="approach-heading" class="results-subtitle">
+            {c.approachTitle}
+        </h2>
+        <ol class="approach-grid">
+            {c.approach.map((item, index) => (
+                <li>
+                    <span class="partnership-number" aria-hidden="true">
+                        {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                </li>
+            ))}
+        </ol>
+    </section>
+
+    <section class="trail-wrap coaching-split" aria-label={`${c.forWhoTitle} · ${c.formatsTitle}`}>
+        <div>
+            <h2>{c.forWhoTitle}</h2>
+            <ul class="check-list">
+                {c.forWho.map((item) => (
+                    <li>{item}</li>
+                ))}
+            </ul>
+        </div>
+        <div>
+            <h2>{c.formatsTitle}</h2>
+            <ul class="coaching-formats">
+                {c.formats.map((format) => (
+                    <li>
+                        <h3>{format.title}</h3>
+                        <p>{format.text}</p>
+                    </li>
+                ))}
+            </ul>
+            <p class="source-note">{c.pricing}</p>
+        </div>
+    </section>
+
+    <section id="waitlist" class="waitlist" aria-labelledby="waitlist-heading">
+        <div class="trail-wrap waitlist-inner">
+            <div>
+                <p class="page-kicker">{c.kicker}</p>
+                <h2 id="waitlist-heading">{c.waitlistTitle}</h2>
+            </div>
+            <div>
+                <p class="trail-lead">{c.waitlistText}</p>
+                <a class="trail-action" href={waitlistHref}>
+                    {c.waitlistCta}
+                    <Icon name="arrow" size={18} />
+                </a>
+            </div>
+        </div>
+    </section>
+</TrailLayout>

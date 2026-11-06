@@ -1,0 +1,29 @@
+---
+import { trailCopy } from '../../data/trail-copy';
+import type { Lang } from '../../lib/routes';
+
+const { lang } = Astro.props as { lang: Lang };
+const copy = trailCopy[lang];
+---
+
+<ol class="partnership-cards">
+    {copy.partnershipFormats.map((format, index) => (
+        <li class="partnership-card">
+            <span class="partnership-number" aria-hidden="true">
+                {String(index + 1).padStart(2, '0')}
+            </span>
+            <h3>{format.title}</h3>
+            <dl>
+                <div>
+                    <dt>{copy.supportLabel}</dt>
+                    <dd>{format.support}</dd>
+                </div>
+                <div>
+                    <dt>{copy.contributionLabel}</dt>
+                    <dd>{format.contribution}</dd>
+                </div>
+            </dl>
+        </li>
+    ))}
+</ol>
+<p class="source-note">{copy.partnershipNote}</p>

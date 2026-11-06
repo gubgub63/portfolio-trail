@@ -1,0 +1,85 @@
+---
+import TrailLayout from '../../layouts/TrailLayout.astro';
+import Icon from '../Icon.astro';
+import Story from '../trail/Story.astro';
+import { siteCopy } from '../../data/site-copy';
+import { trailCopy } from '../../data/trail-copy';
+import { gr441Project } from '../../data/gr441-project';
+import { sitePath } from '../../lib/paths';
+import { href, type Lang } from '../../lib/routes';
+
+const { lang } = Astro.props as { lang: Lang };
+const fr = lang === 'fr';
+const t = siteCopy[lang];
+const copy = trailCopy[lang];
+---
+
+<TrailLayout lang={lang} title={t.about.title} description={t.about.description} page="about">
+    <Story lang={lang} />
+
+    <section class="home-loop" aria-labelledby="home-loop-title">
+        <div class="home-loop-inner trail-wrap">
+            <div class="home-loop-copy">
+                <h2 id="home-loop-title">
+                    {fr ? 'Tout part' : 'It all starts'}
+                    <br />
+                    <span>{fr ? 'de chez moi.' : 'at home.'}</span>
+                </h2>
+                <p>
+                    {fr
+                        ? 'Le GR441, c’est cette boucle autour de mes volcans. Début 2027, mon objectif est d’y tenter le meilleur temps connu avec assistance. Un projet personnel, sur les sentiers qui me ressemblent.'
+                        : 'The GR441 loops around my home volcanoes. My goal is a supported fastest known time attempt here in early 2027. A personal project on the trails that feel like me.'}
+                </p>
+                <dl class="loop-facts">
+                    <div>
+                        <dt>{copy.distance}</dt>
+                        <dd>114 km</dd>
+                    </div>
+                    <div>
+                        <dt>{fr ? 'Dénivelé positif' : 'Elevation gain'}</dt>
+                        <dd>2 782 m+</dd>
+                    </div>
+                    <div>
+                        <dt>{copy.goal}</dt>
+                        <dd>{gr441Project.timing[lang]}</dd>
+                    </div>
+                </dl>
+                <a class="trail-text-link" href={href('gr441', lang)}>
+                    {t.about.loopLink}
+                    <Icon name="arrow" size={18} />
+                </a>
+            </div>
+            <figure class="home-loop-photo">
+                <img
+                    src={sitePath('/images/trail/auvergne.webp')}
+                    alt={copy.landscapeAlt}
+                    width="1600"
+                    height="1200"
+                    loading="lazy"
+                />
+                <figcaption>{copy.landscapeCaption}</figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <section class="about-next trail-wrap" aria-label={t.about.next}>
+        <ul class="about-pillars">
+            <li>
+                <span>{copy.homeGround}</span>
+                <strong>Puy-de-Dôme, Auvergne</strong>
+            </li>
+            <li>
+                <span>{copy.longGame}</span>
+                <strong>{copy.longGameText}</strong>
+            </li>
+            <li>
+                <span>{copy.dream}</span>
+                <strong>{copy.dreamText}</strong>
+            </li>
+        </ul>
+        <a class="trail-action" href={href('projects', lang)}>
+            {t.about.next}
+            <Icon name="arrow" size={18} />
+        </a>
+    </section>
+</TrailLayout>

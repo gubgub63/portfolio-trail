@@ -1,0 +1,50 @@
+---
+import Icon from '../Icon.astro';
+import { siteCopy } from '../../data/site-copy';
+import { postSlug, type Post } from '../../lib/blog';
+import { formatDate, readingMinutes } from '../../lib/format';
+import { sitePath } from '../../lib/paths';
+import { blogPostPath, type Lang } from '../../lib/routes';
+
+interface Props {
+    post: Post;
+    lang: Lang;
+}
+const { post, lang } = Astro.props;
+const t = siteCopy[lang];
+const { title, description, date, category, cover, coverAlt, race } = post.data;
+---
+
+<article class="post-card" data-category={category}>
+    <a href={sitePath(blogPostPath(postSlug(post), lang))}>
+        {cover && (
+            <img
+                class="post-card-cover"
+                src={sitePath(cover)}
+                alt={coverAlt ?? ''}
+                width="800"
+                height="520"
+                loading="lazy"
+            />
+        )}
+        <div class="post-card-meta">
+            <span>{t.categories[category]}</span>
+            <time datetime={date.toISOString()}>{formatDate(date, lang)}</time>
+            <span>
+                {readingMinutes(post.body)} {t.blog.readingTime}
+            </span>
+        </div>
+        <h3>{title}</h3>
+        {race && (
+            <p class="post-card-race">
+                {race.distanceKm} km · {race.elevationM} m+
+                {race.time && ` · ${race.time}`}
+            </p>
+        )}
+        <p>{description}</p>
+        <span class="trail-text-link">
+            {t.blog.read}
+            <Icon name="arrow" size={17} />
+        </span>
+    </a>
+</article>

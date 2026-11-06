@@ -1,0 +1,179 @@
+---
+import { render } from 'astro:content';
+import TrailLayout from '../../layouts/TrailLayout.astro';
+import Icon from '../Icon.astro';
+import PostCard from '../trail/PostCard.astro';
+import { siteCopy } from '../../data/site-copy';
+import { formatDate, formatNumber, formatPlacing, readingMinutes } from '../../lib/format';
+import { getPosts, postSlug, type Post } from '../../lib/blog';
+import { sitePath } from '../../lib/paths';
+import { blogPostPath, href, routes, type Lang } from '../../lib/routes';
+
+interface Props {
+    post: Post;
+    lang: Lang;
+}
+const { post, lang } = Astro.props;
+const t = siteCopy[lang];
+const { Content } = await render(post);
+const { title, description, date, updated, category, cover, coverAlt, race, translation } =
+    post.data;
+const slug = postSlug(post);
+const other: Lang = lang === 'fr' ? 'en' : 'fr';
+const alternates = {
+    [lang]: blogPostPath(slug, lang),
+    [other]: translation ? blogPostPath(translation, other) : routes.blog[other],
+} as Record<Lang, string>;
+const related = (await getPosts(lang))
+    .filter((candidate) => candidate.id !== post.id)
+    .sort(
+        (a, b) =>
+            Number(b.data.category === category) - Number(a.data.category === category) ||
+            b.data.date.valueOf() - a.data.date.valueOf(),
+    )
+    .slice(0, 2);
+const site = Astro.site ? new URL(import.meta.env.BASE_URL, Astro.site).href : undefined;
+const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: title,
+    description,
+    datePublished: date.toISOString(),
+    dateModified: (updated ?? date).toISOString(),
+    inLanguage: lang,
+    author: { '@type': 'Person', name: 'Enzo Gubbiotti', url: site },
+    image: site && cover ? new URL(cover.replace(/^\//, ''), site).href : undefined,
+};
+---
+
+<TrailLayout
+    lang={lang}
+    title={`${title} — Enzo Gubbiotti`}
+    description={description}
+    page="blog"
+    alternates={alternates}
+    image={cover}
+    type="article"
+    jsonLd={jsonLd}
+>
+    <article class="post">
+        <header class="post-header trail-wrap">
+            <a class="back-link" href={href('blog', lang)}>
+                <Icon name="arrow" size={16} />
+                {t.blog.back}
+            </a>
+            <div class="post-card-meta">
+                <span>{t.categories[category]}</span>
+                <time datetime={date.toISOString()}>{formatDate(date, lang, 'long')}</time>
+                <span>
+                    {readingMinutes(post.body)} {t.blog.readingTime}
+                </span>
+                {translation && (
+                    <a href={sitePath(blogPostPath(translation, other))} hreflang={other}>
+                        {t.blog.translation}
+                    </a>
+                )}
+            </div>
+            <h1 id="page-title">{title}</h1>
+            <p class="trail-lead">{description}</p>
+        </header>
+
+        {cover && (
+            <figure class="post-cover trail-wrap">
+                <img
+                    src={sitePath(cover)}
+                    alt={coverAlt ?? ''}
+                    width="1600"
+                    height="1000"
+                    fetchpriority="high"
+                />
+            </figure>
+        )}
+
+        <div class="post-layout trail-wrap">
+            {race && (
+                <aside class="race-card" aria-labelledby="race-card-title">
+                    <h2 id="race-card-title">{t.blog.raceCard}</h2>
+                    <dl>
+                        <div>
+                            <dt>{t.blog.race}</dt>
+                            <dd>{race.name}</dd>
+                        </div>
+                        <div>
+                            <dt>{t.blog.date}</dt>
+                            <dd>{formatDate(race.date, lang, 'long')}</dd>
+                        </div>
+                        <div>
+                            <dt>{t.blog.distance}</dt>
+                            <dd>{formatNumber(race.distanceKm, lang)} km</dd>
+                        </div>
+                        <div>
+                            <dt>{t.blog.elevation}</dt>
+                            <dd>{formatNumber(race.elevationM, lang)} m+</dd>
+                        </div>
+                        {race.time && (
+                            <div>
+                                <dt>{t.blog.time}</dt>
+                                <dd>{race.time}</dd>
+                            </div>
+                        )}
+                        {race.rank && (
+                            <div>
+                                <dt>{t.blog.overall}</dt>
+                                <dd>
+                                    {race.rank}
+                                    {race.totalRanked && ` / ${race.totalRanked}`}
+                                </dd>
+                            </div>
+                        )}
+                        {race.categoryPlace && (
+                            <div>
+                                <dt>{t.blog.category}</dt>
+                                <dd>{formatPlacing(race.categoryPlace, lang)}</dd>
+                            </div>
+                        )}
+                    </dl>
+                    {race.resultsUrl && (
+                        <a
+                            class="trail-text-link"
+                            href={race.resultsUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            {t.blog.officialResults}
+                            <Icon name="arrow" size={16} />
+                        </a>
+                    )}
+                </aside>
+            )}
+            <div class="prose">
+                <Content />
+            </div>
+        </div>
+
+        <aside class="post-cta trail-wrap" aria-label={t.blog.ctaTitle}>
+            <p>{t.blog.ctaTitle}</p>
+            <div>
+                <a class="trail-action" href={href('partnerships', lang)}>
+                    {t.blog.ctaPartnerships}
+                    <Icon name="arrow" size={18} />
+                </a>
+                <a class="trail-text-link" href={href('coaching', lang)}>
+                    {t.blog.ctaCoaching}
+                    <Icon name="arrow" size={18} />
+                </a>
+            </div>
+        </aside>
+
+        {related.length > 0 && (
+            <section class="trail-wrap post-related" aria-labelledby="related-heading">
+                <h2 id="related-heading">{t.blog.related}</h2>
+                <div class="post-grid">
+                    {related.map((item) => (
+                        <PostCard post={item} lang={lang} />
+                    ))}
+                </div>
+            </section>
+        )}
+    </article>
+</TrailLayout>

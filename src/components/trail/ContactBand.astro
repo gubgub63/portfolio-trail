@@ -1,0 +1,52 @@
+---
+import Icon from '../Icon.astro';
+import { siteCopy } from '../../data/site-copy';
+import { profile } from '../../data/trail-profile';
+import { trailSocial } from '../../data/trail-social';
+import trailResults from '../../data/trail-results.json';
+import { mailto } from '../../lib/mailto';
+import type { Lang } from '../../lib/routes';
+
+interface Props {
+    lang: Lang;
+    /** Optional prefilled mailto replacing the generic contact link. */
+    href?: string;
+}
+const { lang, href } = Astro.props;
+const t = siteCopy[lang].contact;
+const contactHref = href ?? mailto(profile.email, t.subject);
+const emailAria = lang === 'fr' ? 'Envoyer un e-mail à Enzo' : 'Email Enzo';
+---
+
+<section id="contact" class="trail-contact" aria-labelledby="trail-contact-heading">
+    <div class="trail-wrap">
+        <div class="contact-heading">
+            <h2 id="trail-contact-heading">
+                {t.title[0]}
+                <br />
+                {t.title[1]}
+            </h2>
+            <a class="contact-round" href={contactHref} aria-label={emailAria}>
+                <Icon name="arrow" size={48} />
+            </a>
+        </div>
+        <div class="contact-baseline">
+            <p>{t.intro}</p>
+            <a class="contact-email" href={contactHref}>
+                {profile.email}
+                <Icon name="arrow" size={22} />
+            </a>
+        </div>
+        <div class="contact-socials">
+            <a href={trailSocial.profileUrl} target="_blank" rel="noreferrer">
+                TikTok
+                <Icon name="arrow" size={16} />
+            </a>
+            <a href={trailResults.profileUrl} target="_blank" rel="noreferrer">
+                UTMB
+                <Icon name="arrow" size={16} />
+            </a>
+            <span>{t.signoff}</span>
+        </div>
+    </div>
+</section>

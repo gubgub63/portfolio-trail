@@ -1,0 +1,48 @@
+---
+import Icon from '../Icon.astro';
+import { sitePath } from '../../lib/paths';
+import { href, type Lang } from '../../lib/routes';
+import { siteCopy } from '../../data/site-copy';
+import type { getProjects } from '../../data/projects';
+
+interface Props {
+    project: ReturnType<typeof getProjects>[number];
+    lang: Lang;
+    headingLevel?: 'h2' | 'h3';
+}
+const { project, lang, headingLevel = 'h3' } = Astro.props;
+const Heading = headingLevel;
+const large = project.id === 'gr441';
+---
+
+<article class="project-card">
+    <a class="project-card-link" href={href(project.id, lang)}>
+        <div class="project-landscape project-card-image">
+            <img
+                src={sitePath(project.image!)}
+                alt={project.imageAlt}
+                width={large ? 1600 : 1000}
+                height={large ? 1200 : 750}
+                loading="lazy"
+            />
+            <span class="project-location">
+                <Icon name="mountain" size={18} />
+                {project.location}
+            </span>
+        </div>
+        <div class="project-card-body">
+            <span class="project-status">
+                {project.type} · {project.timing}
+            </span>
+            <Heading class="project-card-title">{project.title}</Heading>
+            <p class="project-card-numbers">
+                {project.distance} <span>{project.elevationLabel}</span>
+            </p>
+            <p class="project-card-text">{project.description}</p>
+            <span class="trail-text-link">
+                {siteCopy[lang].projects.open}
+                <Icon name="arrow" size={18} />
+            </span>
+        </div>
+    </a>
+</article>

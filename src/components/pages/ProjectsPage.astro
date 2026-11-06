@@ -1,0 +1,59 @@
+---
+import TrailLayout from '../../layouts/TrailLayout.astro';
+import Icon from '../Icon.astro';
+import PageHeader from '../trail/PageHeader.astro';
+import ProjectCard from '../trail/ProjectCard.astro';
+import { siteCopy } from '../../data/site-copy';
+import { trailCopy } from '../../data/trail-copy';
+import { getProjects } from '../../data/projects';
+import { href, type Lang } from '../../lib/routes';
+
+const { lang } = Astro.props as { lang: Lang };
+const t = siteCopy[lang];
+const copy = trailCopy[lang];
+const projects = getProjects(lang);
+---
+
+<TrailLayout
+    lang={lang}
+    title={t.projects.title}
+    description={t.projects.description}
+    page="projects"
+>
+    <PageHeader kicker={t.projects.kicker} heading={t.projects.heading} intro={copy.goalsIntro}>
+        <p class="trail-caption">{copy.goalsDisclaimer}</p>
+    </PageHeader>
+
+    <section class="trail-wrap projects-calendar" aria-labelledby="calendar-heading">
+        <h2 id="calendar-heading" class="visually-hidden">
+            {t.projects.calendar}
+        </h2>
+        <ol class="season-timeline">
+            {projects.map((project) => (
+                <li>
+                    <a href={href(project.id, lang)}>
+                        <span class="season-date">{project.timing}</span>
+                        <span class="season-name">{project.name}</span>
+                        <span class="season-place">{project.location}</span>
+                    </a>
+                </li>
+            ))}
+        </ol>
+        <div class="project-grid project-grid-large">
+            {projects.map((project) => (
+                <ProjectCard project={project} lang={lang} headingLevel="h2" />
+            ))}
+        </div>
+    </section>
+
+    <section class="trail-wrap projects-partner" aria-labelledby="projects-partner-heading">
+        <div>
+            <h2 id="projects-partner-heading">{t.projects.partnershipTitle}</h2>
+            <p class="trail-lead">{copy.partnershipIntro}</p>
+        </div>
+        <a class="trail-action" href={href('partnerships', lang)}>
+            {t.projects.partnershipCta}
+            <Icon name="arrow" size={18} />
+        </a>
+    </section>
+</TrailLayout>

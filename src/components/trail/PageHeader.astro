@@ -1,0 +1,26 @@
+---
+interface Props {
+    kicker: string;
+    heading: readonly [string, string];
+    intro?: string;
+    id?: string;
+}
+const { kicker, heading, intro, id = 'page-title' } = Astro.props;
+---
+
+<header class="page-header trail-wrap">
+    <p class="page-kicker">{kicker}</p>
+    <div class="page-header-grid">
+        <h1 id={id}>
+            {heading[0]}
+            <br />
+            <span>{heading[1]}</span>
+        </h1>
+        {(intro || Astro.slots.has('default')) && (
+            <div class="page-header-aside">
+                {intro && <p class="trail-lead">{intro}</p>}
+                <slot />
+            </div>
+        )}
+    </div>
+</header>

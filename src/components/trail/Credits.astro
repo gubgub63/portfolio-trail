@@ -1,0 +1,86 @@
+---
+import { trailCopy } from '../../data/trail-copy';
+import { trailSocial } from '../../data/trail-social';
+import trailResults from '../../data/trail-results.json';
+import { sitePath } from '../../lib/paths';
+import type { Lang } from '../../lib/routes';
+
+const { lang } = Astro.props as { lang: Lang };
+const copy = trailCopy[lang];
+const fr = lang === 'fr';
+const photos = [
+    {
+        place: 'Auvergne',
+        author: 'Thalia Gylonno',
+        source: 'https://commons.wikimedia.org/wiki/File:Panorama_Nord_-_Puy_de_dome.jpg',
+        license: 'CC BY-SA 2.0',
+        licenseUrl: 'https://creativecommons.org/licenses/by-sa/2.0/',
+    },
+    {
+        place: fr ? 'Lac de Côme' : 'Lake Como',
+        author: 'Fiorentino67',
+        source: 'https://commons.wikimedia.org/wiki/File:Lago_di_Como_panorama.jpg',
+        license: 'CC BY-SA 4.0',
+        licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    },
+    {
+        place: 'Val d’Aran',
+        author: 'Père Igor',
+        source: 'https://commons.wikimedia.org/wiki/File:Bossost_montagnes_(1).jpg',
+        license: 'CC BY-SA 3.0',
+        licenseUrl: 'https://creativecommons.org/licenses/by-sa/3.0/',
+    },
+];
+---
+
+<details class="trail-credits">
+    <summary>{copy.creditsTitle}</summary>
+    <p>
+        {copy.creditsIntro}{' '}
+        <a href={trailResults.profileUrl} target="_blank" rel="noreferrer">
+            {copy.creditsProfile}
+        </a>
+        .
+    </p>
+    <ul class="photographer-credits">
+        {photos.map((photo) => (
+            <li>
+                {`${photo.place}${fr ? ' :' : ':'} `}
+                <a href={photo.source} target="_blank" rel="noreferrer">
+                    {photo.author}
+                </a>{' '}
+                ·{' '}
+                <a href={photo.licenseUrl} target="_blank" rel="noreferrer">
+                    {photo.license}
+                </a>
+                .
+            </li>
+        ))}
+    </ul>
+    <p>
+        {copy.creditsProcessing}{' '}
+        <a href={sitePath('/images/trail/SOURCES.md')}>{copy.fullCredits}</a>.
+    </p>
+    <p>
+        {copy.creditsTiktok}{' '}
+        <a href={trailSocial.featuredPost.url} target="_blank" rel="noreferrer">
+            TikTok · {trailSocial.name}
+        </a>
+        .
+    </p>
+    <p>
+        {copy.raceDetails}{' '}
+        <a href="https://www.utlactrail.com/gare/120k/" target="_blank" rel="noreferrer">
+            UTLAC 120K
+        </a>{' '}
+        ·{' '}
+        <a href="https://fastestknowntime.com/route/gr441-france" target="_blank" rel="noreferrer">
+            {copy.fktSource}
+        </a>{' '}
+        ·{' '}
+        <a href="https://valdaran.utmb.world/races/VDA" target="_blank" rel="noreferrer">
+            Val d’Aran · VDA
+        </a>
+        .
+    </p>
+</details>

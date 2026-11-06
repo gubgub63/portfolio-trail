@@ -1,0 +1,21 @@
+---
+/** Two-line section heading with an optional intro and link, as used across the site. */
+interface Props {
+    id: string;
+    heading: readonly [string, string];
+    intro?: string;
+}
+const { id, heading, intro } = Astro.props;
+---
+
+<div class="section-heading-row">
+    <h2 id={id}>
+        {heading[0]}
+        <br />
+        <span>{heading[1]}</span>
+    </h2>
+    <div>
+        {intro && <p>{intro}</p>}
+        <slot />
+    </div>
+</div>

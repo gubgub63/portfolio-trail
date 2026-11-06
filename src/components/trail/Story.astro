@@ -1,0 +1,109 @@
+---
+import Icon from '../Icon.astro';
+import { trailCopy } from '../../data/trail-copy';
+import { trailSocial } from '../../data/trail-social';
+import { siteCopy } from '../../data/site-copy';
+import { sitePath } from '../../lib/paths';
+import { href, type Lang } from '../../lib/routes';
+
+const { lang } = Astro.props as { lang: Lang };
+const fr = lang === 'fr';
+const copy = trailCopy[lang];
+const t = siteCopy[lang].about;
+---
+
+<section id="story" class="personal-story trail-wrap" aria-labelledby="page-title">
+    <div class="story-spread">
+        <div class="story-sticky">
+            <p class="page-kicker">{t.kicker}</p>
+            <h1 id="page-title">
+                {t.heading[0]}
+                <br />
+                <span>{t.heading[1]}</span>
+            </h1>
+            <div class="story-photo-stack" aria-hidden="true">
+                <figure class="story-photo story-photo-home">
+                    <img
+                        src={sitePath('/images/trail/auvergne.webp')}
+                        alt=""
+                        width="1600"
+                        height="1200"
+                    />
+                    <figcaption>{fr ? 'Mes terres' : 'My home ground'}</figcaption>
+                </figure>
+                <figure class="story-photo story-photo-person">
+                    <img
+                        src={sitePath('/images/trail/enzo.webp')}
+                        alt=""
+                        width="480"
+                        height="480"
+                    />
+                    <figcaption>Enzo Gubbiotti</figcaption>
+                </figure>
+                <figure class="story-photo story-photo-run">
+                    <img
+                        src={sitePath(trailSocial.featuredPost.image)}
+                        alt=""
+                        width="405"
+                        height="720"
+                    />
+                    <figcaption>
+                        {fr ? 'La préparation, au quotidien' : 'The everyday preparation'}
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="story-chapter-indicator" aria-hidden="true">
+                <span>{fr ? 'Des racines' : 'The roots'}</span>
+                <span>{fr ? 'Un quotidien' : 'The everyday'}</span>
+                <span>{fr ? 'Une envie' : 'The ambition'}</span>
+            </div>
+        </div>
+        <div class="story-chapters">
+            <article class="story-chapter">
+                <h2>{fr ? 'Mon point de départ.' : 'Where it all starts.'}</h2>
+                <p>{copy.storyFirst}</p>
+                <span class="story-place">Puy-de-Dôme, Auvergne</span>
+            </article>
+            <article class="story-chapter">
+                <h2>{fr ? 'Entre code et sentiers.' : 'Between code and trails.'}</h2>
+                <p>{copy.storySecond}</p>
+            </article>
+            <article class="story-chapter">
+                <h2>{fr ? 'L’envie d’aller plus loin.' : 'The drive to go further.'}</h2>
+                <p>{copy.intro}</p>
+                <a class="trail-text-link" href={href('results', lang)}>
+                    {copy.resultsButton}
+                    <Icon name="arrow" size={17} />
+                </a>
+            </article>
+        </div>
+    </div>
+</section>
+
+<script>
+    const spread = document.querySelector<HTMLElement>('.story-spread');
+    const chapters = [...document.querySelectorAll<HTMLElement>('.story-chapter')];
+    let frame = 0;
+    const render = () => {
+        frame = 0;
+        if (!spread || !chapters.length) return;
+        const middle = window.innerHeight / 2;
+        let nearest = 0;
+        let distance = Infinity;
+        chapters.forEach((chapter, index) => {
+            const box = chapter.getBoundingClientRect();
+            const next = Math.abs(box.top + box.height / 2 - middle);
+            if (next < distance) {
+                nearest = index;
+                distance = next;
+            }
+        });
+        spread.dataset.chapter = String(nearest);
+    };
+    const schedule = () => {
+        if (!frame) frame = requestAnimationFrame(render);
+    };
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule, { passive: true });
+    schedule();
+</script>

@@ -1,0 +1,64 @@
+---
+import TrailLayout from '../../layouts/TrailLayout.astro';
+import PageHeader from '../trail/PageHeader.astro';
+import PostCard from '../trail/PostCard.astro';
+import EmptyJournal from '../trail/EmptyJournal.astro';
+import { siteCopy } from '../../data/site-copy';
+import { getPosts } from '../../lib/blog';
+import type { Lang } from '../../lib/routes';
+
+const { lang } = Astro.props as { lang: Lang };
+const t = siteCopy[lang];
+const posts = await getPosts(lang);
+const categories = Object.entries(t.categories).filter(([key]) =>
+    posts.some((post) => post.data.category === key),
+);
+---
+
+<TrailLayout lang={lang} title={t.blog.title} description={t.blog.description} page="blog">
+    <PageHeader kicker={t.blog.kicker} heading={t.blog.heading} intro={t.blog.intro} />
+    <section class="trail-wrap blog-list" aria-label={t.blog.kicker}>
+        {categories.length > 1 && (
+            <div class="blog-filters" role="group" aria-label={t.blog.filterLabel} hidden>
+                <button type="button" data-filter="all" aria-pressed="true">
+                    {t.blog.all}
+                </button>
+                {categories.map(([key, label]) => (
+                    <button type="button" data-filter={key} aria-pressed="false">
+                        {label}
+                    </button>
+                ))}
+            </div>
+        )}
+        {posts.length > 0 ? (
+            <div class="post-grid">
+                {posts.map((post) => (
+                    <PostCard post={post} lang={lang} />
+                ))}
+            </div>
+        ) : (
+            <EmptyJournal lang={lang} />
+        )}
+    </section>
+</TrailLayout>
+
+<script>
+    // Progressive enhancement: without JavaScript every post stays listed.
+    const filters = document.querySelector<HTMLElement>('.blog-filters');
+    const buttons = [...document.querySelectorAll<HTMLButtonElement>('[data-filter]')];
+    const cards = [...document.querySelectorAll<HTMLElement>('.post-card')];
+    if (filters) {
+        filters.hidden = false;
+        buttons.forEach((button) =>
+            button.addEventListener('click', () => {
+                const filter = button.dataset.filter;
+                buttons.forEach((other) =>
+                    other.setAttribute('aria-pressed', String(other === button)),
+                );
+                cards.forEach((card) => {
+                    card.hidden = filter !== 'all' && card.dataset.category !== filter;
+                });
+            }),
+        );
+    }
+</script>

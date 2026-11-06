@@ -1,0 +1,19 @@
+---
+import Icon from '../Icon.astro';
+import { siteCopy } from '../../data/site-copy';
+import { trailSocial } from '../../data/trail-social';
+import type { Lang } from '../../lib/routes';
+
+const { lang } = Astro.props as { lang: Lang };
+const t = siteCopy[lang].blog;
+---
+
+<div class="journal-empty">
+    <Icon name="mountain" size={34} />
+    <h3>{t.empty}</h3>
+    <p>{t.emptyText}</p>
+    <a class="trail-text-link" href={trailSocial.profileUrl} target="_blank" rel="noreferrer">
+        {trailSocial.name} / {trailSocial.handle}
+        <Icon name="arrow" size={18} />
+    </a>
+</div>

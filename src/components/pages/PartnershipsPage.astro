@@ -1,0 +1,139 @@
+---
+import TrailLayout from '../../layouts/TrailLayout.astro';
+import Icon from '../Icon.astro';
+import PageHeader from '../trail/PageHeader.astro';
+import PartnershipFormats from '../trail/PartnershipFormats.astro';
+import SocialCard from '../trail/SocialCard.astro';
+import ResultHighlights from '../trail/ResultHighlights.astro';
+import { siteCopy } from '../../data/site-copy';
+import { trailCopy } from '../../data/trail-copy';
+import { getProjects } from '../../data/projects';
+import { trailSocial } from '../../data/trail-social';
+import { profile } from '../../data/trail-profile';
+import trailResults from '../../data/trail-results.json';
+import { formatDate, formatNumber } from '../../lib/format';
+import { mailto } from '../../lib/mailto';
+import { href, type Lang } from '../../lib/routes';
+
+const { lang } = Astro.props as { lang: Lang };
+const t = siteCopy[lang];
+const p = t.partnerships;
+const copy = trailCopy[lang];
+const projects = getProjects(lang);
+const partnershipHref = mailto(profile.email, copy.contactSubject, copy.contactBody);
+const podiums = trailResults.results.filter((result) => result.categoryPlacing).length;
+const longest = Math.max(
+    ...trailResults.results
+        .filter((result) => !result.isDnf)
+        .map((result) => Number(result.distance)),
+);
+const generalIndex = trailResults.indexes.find((index) => index.piCategory === 'general')?.index;
+---
+
+<TrailLayout
+    lang={lang}
+    title={p.title}
+    description={p.description}
+    page="partnerships"
+    contactHref={partnershipHref}
+>
+    <PageHeader kicker={p.kicker} heading={p.heading} intro={copy.partnershipIntro}>
+        <a class="trail-action" href={partnershipHref}>
+            {p.cta}
+            <Icon name="arrow" size={18} />
+        </a>
+    </PageHeader>
+
+    <section class="trail-wrap glance" aria-labelledby="glance-heading">
+        <h2 id="glance-heading" class="results-subtitle">
+            {p.atGlance}
+        </h2>
+        <dl class="glance-grid">
+            <div>
+                <dd>{formatNumber(trailSocial.followers, lang)}</dd>
+                <dt>{copy.followersLabel}</dt>
+            </div>
+            <div>
+                <dd>{trailSocial.likesDisplay[lang]}</dd>
+                <dt>{copy.likesLabel}</dt>
+            </div>
+            <div>
+                <dd>{podiums}</dd>
+                <dt>{p.podiums}</dt>
+            </div>
+            <div>
+                <dd>{longest} km</dd>
+                <dt>{p.longest}</dt>
+            </div>
+            {generalIndex && (
+                <div>
+                    <dd>{generalIndex}</dd>
+                    <dt>{p.index}</dt>
+                </div>
+            )}
+        </dl>
+        <p class="source-note">
+            {p.snapshot}{' '}
+            <time datetime={trailSocial.retrievedAt}>
+                {formatDate(trailSocial.retrievedAt, lang)}
+            </time>
+            {' (TikTok) · '}
+            <time datetime={trailResults.retrievedAt}>
+                {formatDate(trailResults.retrievedAt, lang)}
+            </time>
+            {' (UTMB).'}
+        </p>
+    </section>
+
+    <section class="trail-wrap partner-offer" aria-labelledby="offer-heading">
+        <h2 id="offer-heading">{p.offerTitle}</h2>
+        <ul>
+            {p.offer.map((item) => (
+                <li>{item}</li>
+            ))}
+        </ul>
+    </section>
+
+    <section class="trail-wrap partner-calendar" aria-labelledby="calendar-heading">
+        <div class="section-heading-row">
+            <h2 id="calendar-heading">{p.calendarTitle}</h2>
+            <div>
+                <p>{p.calendarIntro}</p>
+                <p class="trail-caption">{copy.goalsDisclaimer}</p>
+            </div>
+        </div>
+        <ol class="season-timeline">
+            {projects.map((project) => (
+                <li>
+                    <a href={href(project.id, lang)}>
+                        <span class="season-date">{project.timing}</span>
+                        <span class="season-name">{project.name}</span>
+                        <span class="season-place">{project.partnership}</span>
+                    </a>
+                </li>
+            ))}
+        </ol>
+    </section>
+
+    <section class="trail-wrap partner-formats" aria-labelledby="formats-heading">
+        <h2 id="formats-heading">{p.formatsTitle}</h2>
+        <PartnershipFormats lang={lang} />
+    </section>
+
+    <section class="trail-wrap partner-results" aria-labelledby="partner-results-heading">
+        <h2 id="partner-results-heading" class="results-subtitle">
+            {copy.selectedResults}
+        </h2>
+        <ResultHighlights lang={lang} />
+        <a class="trail-text-link" href={href('results', lang)}>
+            {t.home.allResults}
+            <Icon name="arrow" size={18} />
+        </a>
+    </section>
+
+    <SocialCard
+        lang={lang}
+        heading={[p.contentTitle, `${trailSocial.name}.`]}
+        id="partner-content"
+    />
+</TrailLayout>

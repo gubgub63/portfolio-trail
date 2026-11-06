@@ -1,0 +1,142 @@
+---
+import TrailLayout from '../../layouts/TrailLayout.astro';
+import Icon from '../Icon.astro';
+import TrailRoute from '../TrailRoute.astro';
+import ProjectPager from '../trail/ProjectPager.astro';
+import { siteCopy } from '../../data/site-copy';
+import { trailCopy } from '../../data/trail-copy';
+import { getProject } from '../../data/projects';
+import { getRaceRoute } from '../../data/race-routes';
+import { profile } from '../../data/trail-profile';
+import { mailto } from '../../lib/mailto';
+import { sitePath } from '../../lib/paths';
+import { href, type Lang } from '../../lib/routes';
+
+interface Props {
+    lang: Lang;
+    id: 'utlac' | 'vda';
+}
+const { lang, id } = Astro.props;
+const fr = lang === 'fr';
+const t = siteCopy[lang].projects;
+const copy = trailCopy[lang];
+const project = getProject(id, lang);
+const race = getRaceRoute(id, lang);
+const title = `${project.name} · ${project.timing} — Enzo Gubbiotti`;
+const description = `${project.description} ${race.distance} · ${race.climbing}.`;
+const contactHref = mailto(
+    profile.email,
+    `${project.name} · ${copy.contactSubject}`,
+    copy.contactBody,
+);
+---
+
+<TrailLayout
+    lang={lang}
+    title={title}
+    description={description}
+    page={id}
+    image={project.image}
+    contactHref={contactHref}
+>
+    <article class="race-project">
+        <header class="race-hero trail-wrap">
+            <a class="back-link" href={href('projects', lang)}>
+                <Icon name="arrow" size={16} />
+                {t.back}
+            </a>
+            <div class="race-hero-grid">
+                <div class="race-hero-copy">
+                    <p class="page-kicker">
+                        {project.type} · {project.timing}
+                    </p>
+                    <h1 id="page-title">
+                        {project.name}
+                        <span class="name-dot">.</span>
+                    </h1>
+                    <p class="race-hero-title">{race.title}</p>
+                    <p class="trail-lead">{project.description}</p>
+                    <dl class="race-facts">
+                        <div>
+                            <dt>{fr ? 'Distance annoncée' : 'Listed distance'}</dt>
+                            <dd>{race.distance}</dd>
+                        </div>
+                        <div>
+                            <dt>{fr ? 'Dénivelé positif' : 'Elevation gain'}</dt>
+                            <dd>{race.climbing}</dd>
+                        </div>
+                        <div>
+                            <dt>{fr ? 'Départ' : 'Start'}</dt>
+                            <dd>{race.start}</dd>
+                        </div>
+                        <div>
+                            <dt>{copy.goal}</dt>
+                            <dd>{project.timing}</dd>
+                        </div>
+                    </dl>
+                    <a class="trail-action" href="#parcours">
+                        {t.route3d}
+                        <Icon name="arrow" size={18} />
+                    </a>
+                </div>
+                <figure class="project-landscape race-hero-image">
+                    <img
+                        src={sitePath(project.image!)}
+                        alt={project.imageAlt}
+                        width="1000"
+                        height="750"
+                        fetchpriority="high"
+                    />
+                    <span class="project-location">
+                        <Icon name="mountain" size={18} />
+                        {race.region}
+                    </span>
+                </figure>
+            </div>
+            <p class="trail-caption">{copy.goalsDisclaimer}</p>
+        </header>
+
+        <section id="parcours" class="race-terrain" aria-labelledby="race-terrain-title">
+            <div class="race-terrain-inner trail-wrap">
+                <div class="race-terrain-copy">
+                    <p class="page-kicker">{t.route3d}</p>
+                    <h2 id="race-terrain-title">{race.title}</h2>
+                    <p>{race.description}</p>
+                    <a class="trail-text-link" href={project.href} target="_blank" rel="noreferrer">
+                        {t.official}
+                        <Icon name="arrow" size={18} />
+                    </a>
+                </div>
+                <TrailRoute
+                    lang={lang}
+                    route={race.route}
+                    routeId={id}
+                    name={`${project.name} · ${race.region}`}
+                    headline={fr ? 'Le terrain, en relief.' : 'Explore the terrain.'}
+                    startLabel={race.start}
+                    finishLabel={race.finish}
+                    sourceLabel={race.sourceLabel}
+                    elevationLabel="Mapzen Terrain Tiles"
+                    routeNote={race.note}
+                    showElevation
+                />
+            </div>
+        </section>
+
+        <section class="race-partner trail-wrap" aria-labelledby="race-partner-title">
+            <div>
+                <p class="page-kicker">{copy.goalPartnershipLabel}</p>
+                <h2 id="race-partner-title">{t.partnershipTitle}</h2>
+            </div>
+            <div>
+                <p class="trail-lead">{project.partnership}</p>
+                <a class="trail-text-link" href={href('partnerships', lang)}>
+                    {t.partnershipCta}
+                    <Icon name="arrow" size={18} />
+                </a>
+            </div>
+        </section>
+
+        <ProjectPager current={id} lang={lang} />
+    </article>
+</TrailLayout>

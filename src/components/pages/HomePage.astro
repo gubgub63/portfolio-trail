@@ -1,0 +1,139 @@
+---
+import TrailLayout from '../../layouts/TrailLayout.astro';
+import Icon from '../Icon.astro';
+import Hero from '../trail/Hero.astro';
+import SectionHeading from '../trail/SectionHeading.astro';
+import ProjectCard from '../trail/ProjectCard.astro';
+import ResultHighlights from '../trail/ResultHighlights.astro';
+import PostCard from '../trail/PostCard.astro';
+import EmptyJournal from '../trail/EmptyJournal.astro';
+import SocialCard from '../trail/SocialCard.astro';
+import { siteCopy } from '../../data/site-copy';
+import { trailCopy } from '../../data/trail-copy';
+import { getProjects } from '../../data/projects';
+import { trailSocial } from '../../data/trail-social';
+import trailResults from '../../data/trail-results.json';
+import { getPosts } from '../../lib/blog';
+import { href, type Lang } from '../../lib/routes';
+
+const { lang } = Astro.props as { lang: Lang };
+const t = siteCopy[lang];
+const copy = trailCopy[lang];
+const projects = getProjects(lang);
+const posts = (await getPosts(lang)).slice(0, 3);
+const doors = [
+    { key: 'partnerships', ...t.home.doors.partnerships },
+    { key: 'coaching', ...t.home.doors.coaching },
+    { key: 'about', ...t.home.doors.about },
+] as const;
+const site = Astro.site ? new URL(import.meta.env.BASE_URL, Astro.site).href : undefined;
+const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Enzo Gubbiotti',
+    description: t.home.description,
+    url: site,
+    image: site ? new URL('images/trail/enzo-utmb-banner.webp', site).href : undefined,
+    homeLocation: { '@type': 'Place', name: 'Puy-de-Dôme, Auvergne, France' },
+    knowsAbout: ['Trail running', 'Ultra-trail'],
+    sameAs: [trailSocial.profileUrl, trailResults.profileUrl],
+};
+---
+
+<TrailLayout
+    lang={lang}
+    title={t.home.title}
+    description={t.home.description}
+    page="home"
+    jsonLd={jsonLd}
+>
+    <Hero lang={lang} />
+
+    <section id="season" class="home-season" aria-labelledby="season-heading">
+        <div class="trail-wrap">
+            <p class="page-kicker">{t.home.seasonKicker}</p>
+            <SectionHeading
+                id="season-heading"
+                heading={t.home.seasonTitle}
+                intro={t.home.seasonIntro}
+            >
+                <p class="trail-caption">{copy.goalsDisclaimer}</p>
+                <a class="trail-text-link" href={href('projects', lang)}>
+                    {t.home.allProjects}
+                    <Icon name="arrow" size={18} />
+                </a>
+            </SectionHeading>
+            <div class="project-grid">
+                {projects.map((project) => (
+                    <ProjectCard project={project} lang={lang} />
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <section class="trail-results trail-wrap" aria-labelledby="results-heading">
+        <SectionHeading
+            id="results-heading"
+            heading={t.home.resultsTitle}
+            intro={t.home.resultsIntro}
+        >
+            <a class="trail-text-link" href={href('results', lang)}>
+                {t.home.allResults}
+                <Icon name="arrow" size={18} />
+            </a>
+        </SectionHeading>
+        <ResultHighlights lang={lang} />
+    </section>
+
+    <section class="home-journal trail-wrap" aria-labelledby="journal-heading">
+        <SectionHeading
+            id="journal-heading"
+            heading={t.home.journalTitle}
+            intro={t.home.journalIntro}
+        >
+            {posts.length > 0 && (
+                <a class="trail-text-link" href={href('blog', lang)}>
+                    {t.home.allPosts}
+                    <Icon name="arrow" size={18} />
+                </a>
+            )}
+        </SectionHeading>
+        {posts.length > 0 ? (
+            <div class="post-grid">
+                {posts.map((post) => (
+                    <PostCard post={post} lang={lang} />
+                ))}
+            </div>
+        ) : (
+            <EmptyJournal lang={lang} />
+        )}
+    </section>
+
+    <SocialCard
+        lang={lang}
+        heading={
+            lang === 'fr'
+                ? ['Les coulisses,', 'sur les sentiers.']
+                : ['Behind the miles,', 'out on the trails.']
+        }
+    />
+
+    <section class="home-doors trail-wrap" aria-labelledby="doors-heading">
+        <SectionHeading id="doors-heading" heading={t.home.doorsTitle} />
+        <ul class="door-grid">
+            {doors.map((door) => (
+                <li>
+                    <a class="door" href={href(door.key, lang)}>
+                        <span class="door-kicker">{door.kicker}</span>
+                        <span class="door-title">{door.title}</span>
+                        <span class="door-text">{door.text}</span>
+                        <span class="door-cta">
+                            {door.cta}
+                            <Icon name="arrow" size={18} />
+                        </span>
+                    </a>
+                </li>
+            ))}
+        </ul>
+    </section>
+</TrailLayout>

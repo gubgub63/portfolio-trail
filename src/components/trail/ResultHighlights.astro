@@ -1,0 +1,42 @@
+---
+import { trailCopy } from '../../data/trail-copy';
+import trailResults from '../../data/trail-results.json';
+import { formatDate, formatPlacing } from '../../lib/format';
+import type { Lang } from '../../lib/routes';
+
+const { lang } = Astro.props as { lang: Lang };
+const copy = trailCopy[lang];
+const highlights = ['2026-10-10', '2026-08-08', '2026-06-12'].map((date, index) => ({
+    ...trailResults.results.find((result) => result.dateIso === date)!,
+    note: copy.highlights[index],
+}));
+---
+
+<div class="race-results">
+    {highlights.map((result) => (
+        <article class="race-result">
+            <div class="race-placing">
+                <strong>
+                    {result.categoryPlacing
+                        ? formatPlacing(result.categoryPlacing.place, lang)
+                        : '—'}
+                </strong>
+                <span>{result.categoryPlacing?.category}</span>
+            </div>
+            <div class="race-information">
+                <time datetime={result.dateIso}>{formatDate(result.dateIso, lang)}</time>
+                <h3>{result.raceName}</h3>
+                <p>{result.note}</p>
+            </div>
+            <div class="race-numbers">
+                <span>
+                    {Number(result.distance)} <small>km</small>
+                </span>
+                <span>{result.time}</span>
+                <span>
+                    {result.rank} / {result.totalRanked} <small>{copy.overall}</small>
+                </span>
+            </div>
+        </article>
+    ))}
+</div>
