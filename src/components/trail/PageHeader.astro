@@ -1,15 +1,13 @@
 ---
 interface Props {
-    kicker: string;
     heading: readonly [string, string];
     intro?: string;
     id?: string;
 }
-const { kicker, heading, intro, id = 'page-title' } = Astro.props;
+const { heading, intro, id = 'page-title' } = Astro.props;
 ---
 
 <header class="page-header trail-wrap">
-    <p class="page-kicker">{kicker}</p>
     <div class="page-header-grid">
         <h1 id={id}>
             {heading[0]}

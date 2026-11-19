@@ -47,9 +47,6 @@ const contactHref = mailto(
             </a>
             <div class="race-hero-grid">
                 <div class="race-hero-copy">
-                    <p class="page-kicker">
-                        {project.type} · {project.timing}
-                    </p>
                     <h1 id="page-title">
                         {project.name}
                         <span class="name-dot">.</span>
@@ -93,13 +90,11 @@ const contactHref = mailto(
                     </span>
                 </figure>
             </div>
-            <p class="trail-caption">{copy.goalsDisclaimer}</p>
         </header>
 
         <section id="parcours" class="race-terrain" aria-labelledby="race-terrain-title">
             <div class="race-terrain-inner trail-wrap">
                 <div class="race-terrain-copy">
-                    <p class="page-kicker">{t.route3d}</p>
                     <h2 id="race-terrain-title">{race.title}</h2>
                     <p>{race.description}</p>
                     <a class="trail-text-link" href={project.href} target="_blank" rel="noreferrer">
@@ -125,7 +120,6 @@ const contactHref = mailto(
 
         <section class="race-partner trail-wrap" aria-labelledby="race-partner-title">
             <div>
-                <p class="page-kicker">{copy.goalPartnershipLabel}</p>
                 <h2 id="race-partner-title">{t.partnershipTitle}</h2>
             </div>
             <div>

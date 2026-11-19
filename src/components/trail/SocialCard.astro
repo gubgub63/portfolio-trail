@@ -3,7 +3,7 @@ import Icon from '../Icon.astro';
 import { trailCopy } from '../../data/trail-copy';
 import { trailSocial } from '../../data/trail-social';
 import { sitePath } from '../../lib/paths';
-import { formatDate, formatNumber } from '../../lib/format';
+import { formatNumber } from '../../lib/format';
 import type { Lang } from '../../lib/routes';
 
 interface Props {
@@ -43,13 +43,6 @@ const copy = trailCopy[lang];
                     <dt>{copy.likesLabel}</dt>
                 </div>
             </dl>
-            <p class="trail-caption">
-                {copy.socialSnapshot}{' '}
-                <time datetime={trailSocial.retrievedAt}>
-                    {formatDate(trailSocial.retrievedAt, lang)}
-                </time>
-                .
-            </p>
         </div>
         <a
             class="journal-video"

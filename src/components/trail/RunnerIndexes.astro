@@ -1,0 +1,66 @@
+---
+import Icon from '../Icon.astro';
+import SectionHeading from './SectionHeading.astro';
+import { trailCopy } from '../../data/trail-copy';
+import { trailItra } from '../../data/trail-itra';
+import trailResults from '../../data/trail-results.json';
+import { formatDate } from '../../lib/format';
+import type { Lang } from '../../lib/routes';
+
+const { lang } = Astro.props as { lang: Lang };
+const fr = lang === 'fr';
+const copy = trailCopy[lang];
+const utmbGeneral = trailResults.indexes.find((i) => i.piCategory === 'general')?.index;
+const utmbCategories = trailResults.indexes.filter((i) => i.piCategory !== 'general');
+const snapshot = (date: string) => `${fr ? 'Relevé le' : 'Checked on'} ${formatDate(date, lang)}`;
+---
+
+<section id="index" class="home-indexes trail-wrap" aria-labelledby="indexes-heading">
+    <SectionHeading
+        id="indexes-heading"
+        heading={fr ? ['Mon niveau,', 'en chiffres.'] : ['My level,', 'in numbers.']}
+        intro={
+            fr
+                ? 'Les deux index de référence du trail, relevés sur mes profils officiels.'
+                : 'The two reference indexes in trail running, taken from my official profiles.'
+        }
+    />
+    <div class="index-cards">
+        <article class="index-card">
+            <h3>UTMB Index</h3>
+            <p class="index-card-score">{utmbGeneral ?? copy.notRated}</p>
+            <dl class="index-card-split">
+                {utmbCategories.map((category) => (
+                    <div>
+                        <dt>{category.piCategory.toUpperCase()}</dt>
+                        <dd>{category.index ?? '—'}</dd>
+                    </div>
+                ))}
+            </dl>
+            <p class="index-card-meta">
+                <time datetime={trailResults.retrievedAt}>{snapshot(trailResults.retrievedAt)}</time>
+            </p>
+            <a class="trail-text-link" href={trailResults.profileUrl} target="_blank" rel="noreferrer">
+                {copy.viewProfile}
+                <Icon name="arrow" size={16} />
+            </a>
+        </article>
+        {trailItra.index !== null && (
+            <article class="index-card">
+                <h3>ITRA Performance Index</h3>
+                <p class="index-card-score">{trailItra.index}</p>
+                {trailItra.retrievedAt && (
+                    <p class="index-card-meta">
+                        <time datetime={trailItra.retrievedAt}>{snapshot(trailItra.retrievedAt)}</time>
+                    </p>
+                )}
+                {trailItra.profileUrl && (
+                    <a class="trail-text-link" href={trailItra.profileUrl} target="_blank" rel="noreferrer">
+                        {copy.viewProfile}
+                        <Icon name="arrow" size={16} />
+                    </a>
+                )}
+            </article>
+        )}
+    </div>
+</section>

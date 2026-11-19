@@ -20,7 +20,7 @@ export const trailCopy = {
         landscapeAlt: 'The Chaîne des Puys volcanoes stretching into the distance from Puy de Dôme',
         landscapeCaption: 'My home. The setting for my GR441 project.',
         quickFactsLabel: 'A few milestones',
-        tiktokAria: 'My TikTok account, EnzoQuiCourt',
+        tiktokAria: 'My TikTok account, GubGub',
         contentTitle: 'The journey, on the trail.',
         contentIntro:
             'On TikTok, I share my preparation, runs and sporting ambitions. A look at the work behind the goals, in my own words.',
@@ -173,7 +173,7 @@ export const trailCopy = {
         landscapeAlt: 'Les volcans de la Chaîne des Puys vus depuis le puy de Dôme',
         landscapeCaption: 'Mes terres. Le décor de mon projet GR441.',
         quickFactsLabel: 'Quelques repères',
-        tiktokAria: 'Mon compte TikTok, EnzoQuiCourt',
+        tiktokAria: 'Mon compte TikTok, GubGub',
         contentTitle: 'Le parcours se raconte aussi.',
         contentIntro:
             'Sur TikTok, je partage ma préparation, mes sorties et mes ambitions sportives. Un aperçu du travail derrière les objectifs, avec mes mots et sur mes sentiers.',

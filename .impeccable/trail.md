@@ -34,4 +34,4 @@ At 1000px and below grids drop to two columns or one; at 760px and below headers
 
 Local WebP landscapes: `auvergne.webp` (Chaîne des Puys), `utlac.webp` (Lake Como) and `vda.webp` (Val d’Aran). They illustrate places, not personal race participation. Preserve the credits disclosure and `/images/trail/SOURCES.md`. The portrait comes from Enzo’s confirmed UTMB profile.
 
-`src/data/trail-results.json` is the dated October 4, 2026 UTMB snapshot. `src/data/trail.ts` holds the GR441 FKT attempt, UTLAC 120K and VDA 160K as 2027 goals, distinct from confirmed registrations. `src/data/trail-social.ts` records the dated TikTok snapshot (EnzoQuiCourt, @enzo_gubbiotti); figures are not live analytics. Journal posts are written by Enzo; never invent race experiences.
+`src/data/trail-results.json` is the dated October 4, 2026 UTMB snapshot. `src/data/trail.ts` holds the GR441 FKT attempt, UTLAC 120K and VDA 160K as 2027 goals, distinct from confirmed registrations. `src/data/trail-social.ts` records the dated TikTok snapshot (GubGub, @enzo_gubbiotti); figures are not live analytics. Journal posts are written by Enzo; never invent race experiences.

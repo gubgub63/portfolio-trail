@@ -79,7 +79,7 @@ export const gr441Copy = {
         diaryLabel: '04 / Le carnet',
         diaryTitle: 'Le projet se raconte aussi en chemin.',
         diaryText:
-            'Je partage déjà mes sorties et ma préparation sur TikTok, sous le nom EnzoQuiCourt. C’est là que tu peux découvrir mon quotidien de traileur, en attendant les prochaines nouvelles du GR441.',
+            'Je partage déjà mes sorties et ma préparation sur TikTok, sous le nom GubGub. C’est là que tu peux découvrir mon quotidien de traileur, en attendant les prochaines nouvelles du GR441.',
         diaryPost: 'Une sortie sur mes terres',
         diaryCaption: 'Sortie longue au puy de Dôme · Vidéo de préparation',
         watch: 'Voir la vidéo',
@@ -168,7 +168,7 @@ export const gr441Copy = {
         diaryLabel: '04 / The journal',
         diaryTitle: 'A story that grows along the way.',
         diaryText:
-            'I already share my runs and preparation on TikTok as EnzoQuiCourt. Discover my everyday life as a trail runner there while the next GR441 updates take shape.',
+            'I already share my runs and preparation on TikTok as GubGub. Discover my everyday life as a trail runner there while the next GR441 updates take shape.',
         diaryPost: 'A run on my home trails',
         diaryCaption: 'Long run on Puy de Dôme · Preparation video',
         watch: 'Watch the video',

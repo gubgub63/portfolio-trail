@@ -3,7 +3,7 @@
 }
 .gr-project .gr-kicker {
     margin: 0 0 22px;
-    font-size: 11px;
+    font-size: 13px;
     line-height: 1.6;
     letter-spacing: 0.055em;
     color: var(--trail-muted);
@@ -14,7 +14,7 @@
     gap: 12px;
     min-height: 44px;
     color: var(--trail-muted);
-    font-size: 12px;
+    font-size: 14px;
     margin-bottom: 38px;
 }
 .gr-back svg {
@@ -70,7 +70,7 @@
     align-items: center;
     gap: 16px;
     min-height: 44px;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     text-decoration: underline;
     text-decoration-thickness: 1px;
@@ -103,7 +103,7 @@
     align-items: center;
     justify-content: space-between;
     color: #fffdf6;
-    font-size: 12px;
+    font-size: 14px;
     text-shadow: 0 1px 8px #0008;
 }
 .gr-landscape figcaption {
@@ -114,13 +114,13 @@
     padding: 50px 24px 24px;
     background: linear-gradient(transparent, #152015a6);
     color: #fffdf6;
-    font-size: 12px;
+    font-size: 14px;
 }
 .gr-status {
     display: flex;
     align-items: center;
     gap: 9px;
-    font-size: 11px;
+    font-size: 13px;
     color: var(--trail-muted);
     margin: 32px 0 20px;
 }
@@ -138,7 +138,7 @@
     gap: 24px;
 }
 .gr-facts dt {
-    font-size: 11px;
+    font-size: 13px;
     color: var(--trail-muted);
     margin-bottom: 8px;
 }
@@ -194,11 +194,11 @@
     object-fit: cover;
 }
 .gr-signature span {
-    font-size: 13px;
+    font-size: 15px;
 }
 .gr-signature p {
     color: var(--trail-muted);
-    font-size: 11px;
+    font-size: 13px;
     margin-top: 3px;
 }
 .gr-fkt {
@@ -213,7 +213,7 @@
 }
 .gr-fkt p {
     margin-block: 12px 8px;
-    font-size: 13px;
+    font-size: 15px;
     color: var(--trail-muted);
     line-height: 1.8;
 }
@@ -239,13 +239,13 @@
     margin-top: 28px;
 }
 .gr-terrain-note {
-    font-size: 13px;
+    font-size: 15px;
     color: var(--trail-night-muted);
     margin-top: 28px;
     line-height: 1.8;
 }
 .gr-terrain-source {
-    font-size: 10px;
+    font-size: 13px;
     color: var(--trail-night-muted);
     margin-top: 36px;
     max-width: 43ch;
@@ -267,7 +267,7 @@
     border-bottom: 1px solid var(--trail-line);
 }
 .gr-step-number {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 2.2;
     color: var(--trail-muted);
 }
@@ -288,7 +288,7 @@
     line-height: 1.4;
 }
 .gr-step-status {
-    font-size: 10px;
+    font-size: 13px;
     color: var(--trail-muted);
     white-space: nowrap;
 }
@@ -332,7 +332,7 @@
 }
 .gr-evidence p:not(.gr-kicker) {
     color: var(--trail-muted);
-    font-size: 13px;
+    font-size: 15px;
     line-height: 1.8;
     max-width: 68ch;
     margin-top: 12px;
@@ -382,13 +382,13 @@
     right: 0;
     padding: 60px 20px 20px;
     background: linear-gradient(transparent, #152015e6);
-    font-size: 13px;
+    font-size: 15px;
 }
 .gr-film-caption > span:last-child {
     display: flex;
     align-items: center;
     gap: 12px;
-    font-size: 11px;
+    font-size: 13px;
 }
 .gr-diary h2 {
     max-width: 18ch;
@@ -400,7 +400,7 @@
 }
 .gr-diary-note {
     color: var(--trail-muted);
-    font-size: 10px;
+    font-size: 13px;
     margin-top: 24px;
 }
 .gr-contact {
@@ -425,7 +425,7 @@
     display: inline-flex;
 }
 .gr-contact p.gr-contact-note {
-    font-size: 11px;
+    font-size: 13px;
     margin: 18px auto 0;
 }
 .gr-sources {
@@ -439,7 +439,7 @@
 }
 .gr-sources details {
     max-width: 75ch;
-    font-size: 11px;
+    font-size: 13px;
     color: var(--trail-muted);
 }
 .gr-sources summary {
@@ -526,11 +526,11 @@
     }
     .gr-landscape figcaption {
         padding-inline: 18px;
-        font-size: 11px;
+        font-size: 13px;
     }
     .gr-status {
         margin-top: 24px;
-        font-size: 10px;
+        font-size: 13px;
     }
     .gr-facts {
         grid-template-columns: 1fr 1fr;
@@ -614,7 +614,7 @@
         font-size: 15px;
     }
     .gr-contact p.gr-contact-note {
-        font-size: 11px;
+        font-size: 13px;
     }
 }
 @media (prefers-reduced-motion: reduce) {

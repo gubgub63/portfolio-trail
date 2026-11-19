@@ -13,7 +13,7 @@
 }
 .route-eyebrow {
     color: var(--trail-night-muted);
-    font-size: 11px;
+    font-size: 12px;
     letter-spacing: 0.06em;
 }
 .route-heading p {
@@ -114,7 +114,7 @@
 }
 .route-north {
     fill: var(--trail-night-muted);
-    font-size: 11px;
+    font-size: 12px;
 }
 .route-altitude-line {
     stroke: var(--trail-white);
@@ -148,7 +148,7 @@
 }
 .route-hint {
     color: var(--trail-night-muted);
-    font-size: 11px;
+    font-size: 12px;
     text-align: center;
     margin-block: 0 24px;
 }
@@ -181,14 +181,14 @@
 }
 .route-range-labels {
     color: var(--trail-night-muted);
-    font-size: 10px;
+    font-size: 12px;
 }
 .trail-route figcaption {
     display: flex;
     flex-direction: column;
     gap: 3px;
     color: var(--trail-night-muted);
-    font-size: 10px;
+    font-size: 12px;
     margin-top: 24px;
 }
 .trail-route figcaption a {
@@ -202,7 +202,7 @@
     align-items: baseline;
     justify-content: space-between;
     gap: 16px;
-    font-size: 10px;
+    font-size: 12px;
     color: var(--trail-night-muted);
 }
 .route-profile {

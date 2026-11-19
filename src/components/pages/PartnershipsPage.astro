@@ -3,7 +3,6 @@ import TrailLayout from '../../layouts/TrailLayout.astro';
 import Icon from '../Icon.astro';
 import PageHeader from '../trail/PageHeader.astro';
 import PartnershipFormats from '../trail/PartnershipFormats.astro';
-import SocialCard from '../trail/SocialCard.astro';
 import ResultHighlights from '../trail/ResultHighlights.astro';
 import { siteCopy } from '../../data/site-copy';
 import { trailCopy } from '../../data/trail-copy';
@@ -37,7 +36,7 @@ const generalIndex = trailResults.indexes.find((index) => index.piCategory === '
     page="partnerships"
     contactHref={partnershipHref}
 >
-    <PageHeader kicker={p.kicker} heading={p.heading} intro={copy.partnershipIntro}>
+    <PageHeader heading={p.heading} intro={copy.partnershipIntro}>
         <a class="trail-action" href={partnershipHref}>
             {p.cta}
             <Icon name="arrow" size={18} />
@@ -99,7 +98,6 @@ const generalIndex = trailResults.indexes.find((index) => index.piCategory === '
             <h2 id="calendar-heading">{p.calendarTitle}</h2>
             <div>
                 <p>{p.calendarIntro}</p>
-                <p class="trail-caption">{copy.goalsDisclaimer}</p>
             </div>
         </div>
         <ol class="season-timeline">
@@ -130,10 +128,4 @@ const generalIndex = trailResults.indexes.find((index) => index.piCategory === '
             <Icon name="arrow" size={18} />
         </a>
     </section>
-
-    <SocialCard
-        lang={lang}
-        heading={[p.contentTitle, `${trailSocial.name}.`]}
-        id="partner-content"
-    />
 </TrailLayout>

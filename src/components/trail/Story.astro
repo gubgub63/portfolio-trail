@@ -15,7 +15,6 @@ const t = siteCopy[lang].about;
 <section id="story" class="personal-story trail-wrap" aria-labelledby="page-title">
     <div class="story-spread">
         <div class="story-sticky">
-            <p class="page-kicker">{t.kicker}</p>
             <h1 id="page-title">
                 {t.heading[0]}
                 <br />
@@ -29,7 +28,6 @@ const t = siteCopy[lang].about;
                         width="1600"
                         height="1200"
                     />
-                    <figcaption>{fr ? 'Mes terres' : 'My home ground'}</figcaption>
                 </figure>
                 <figure class="story-photo story-photo-person">
                     <img
@@ -38,7 +36,6 @@ const t = siteCopy[lang].about;
                         width="480"
                         height="480"
                     />
-                    <figcaption>Enzo Gubbiotti</figcaption>
                 </figure>
                 <figure class="story-photo story-photo-run">
                     <img
@@ -47,22 +44,13 @@ const t = siteCopy[lang].about;
                         width="405"
                         height="720"
                     />
-                    <figcaption>
-                        {fr ? 'La préparation, au quotidien' : 'The everyday preparation'}
-                    </figcaption>
                 </figure>
-            </div>
-            <div class="story-chapter-indicator" aria-hidden="true">
-                <span>{fr ? 'Des racines' : 'The roots'}</span>
-                <span>{fr ? 'Un quotidien' : 'The everyday'}</span>
-                <span>{fr ? 'Une envie' : 'The ambition'}</span>
             </div>
         </div>
         <div class="story-chapters">
             <article class="story-chapter">
                 <h2>{fr ? 'Mon point de départ.' : 'Where it all starts.'}</h2>
                 <p>{copy.storyFirst}</p>
-                <span class="story-place">Puy-de-Dôme, Auvergne</span>
             </article>
             <article class="story-chapter">
                 <h2>{fr ? 'Entre code et sentiers.' : 'Between code and trails.'}</h2>

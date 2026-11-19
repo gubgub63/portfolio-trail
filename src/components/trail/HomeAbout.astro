@@ -1,0 +1,37 @@
+---
+import Icon from '../Icon.astro';
+import SectionHeading from './SectionHeading.astro';
+import { trailCopy } from '../../data/trail-copy';
+import { siteCopy } from '../../data/site-copy';
+import { sitePath } from '../../lib/paths';
+import { href, type Lang } from '../../lib/routes';
+
+const { lang } = Astro.props as { lang: Lang };
+const fr = lang === 'fr';
+const copy = trailCopy[lang];
+const t = siteCopy[lang].home;
+---
+
+<section class="home-about trail-wrap" aria-labelledby="home-about-heading">
+    <figure class="home-about-photo">
+        <img
+            src={sitePath('/images/trail/enzo.webp')}
+            alt={copy.portraitAlt}
+            width="480"
+            height="480"
+            loading="lazy"
+        />
+    </figure>
+    <div class="home-about-copy">
+        <SectionHeading
+            id="home-about-heading"
+            heading={fr ? ['Moi,', 'en quelques mots.'] : ['Me,', 'in a few words.']}
+        />
+        <p>{copy.storyFirst}</p>
+        <p>{copy.storySecond}</p>
+        <a class="trail-text-link" href={href('about', lang)}>
+            {t.doors.about.cta}
+            <Icon name="arrow" size={18} />
+        </a>
+    </div>
+</section>

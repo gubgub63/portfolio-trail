@@ -2,6 +2,8 @@
 import TrailLayout from '../../layouts/TrailLayout.astro';
 import Icon from '../Icon.astro';
 import Hero from '../trail/Hero.astro';
+import HomeAbout from '../trail/HomeAbout.astro';
+import RunnerIndexes from '../trail/RunnerIndexes.astro';
 import SectionHeading from '../trail/SectionHeading.astro';
 import ProjectCard from '../trail/ProjectCard.astro';
 import ResultHighlights from '../trail/ResultHighlights.astro';
@@ -9,7 +11,6 @@ import PostCard from '../trail/PostCard.astro';
 import EmptyJournal from '../trail/EmptyJournal.astro';
 import SocialCard from '../trail/SocialCard.astro';
 import { siteCopy } from '../../data/site-copy';
-import { trailCopy } from '../../data/trail-copy';
 import { getProjects } from '../../data/projects';
 import { trailSocial } from '../../data/trail-social';
 import trailResults from '../../data/trail-results.json';
@@ -18,7 +19,6 @@ import { href, type Lang } from '../../lib/routes';
 
 const { lang } = Astro.props as { lang: Lang };
 const t = siteCopy[lang];
-const copy = trailCopy[lang];
 const projects = getProjects(lang);
 const posts = (await getPosts(lang)).slice(0, 3);
 const doors = [
@@ -49,15 +49,15 @@ const jsonLd = {
 >
     <Hero lang={lang} />
 
+    <HomeAbout lang={lang} />
+
     <section id="season" class="home-season" aria-labelledby="season-heading">
         <div class="trail-wrap">
-            <p class="page-kicker">{t.home.seasonKicker}</p>
             <SectionHeading
                 id="season-heading"
                 heading={t.home.seasonTitle}
                 intro={t.home.seasonIntro}
             >
-                <p class="trail-caption">{copy.goalsDisclaimer}</p>
                 <a class="trail-text-link" href={href('projects', lang)}>
                     {t.home.allProjects}
                     <Icon name="arrow" size={18} />
@@ -84,6 +84,8 @@ const jsonLd = {
         </SectionHeading>
         <ResultHighlights lang={lang} />
     </section>
+
+    <RunnerIndexes lang={lang} />
 
     <section class="home-journal trail-wrap" aria-labelledby="journal-heading">
         <SectionHeading
@@ -124,7 +126,6 @@ const jsonLd = {
             {doors.map((door) => (
                 <li>
                     <a class="door" href={href(door.key, lang)}>
-                        <span class="door-kicker">{door.kicker}</span>
                         <span class="door-title">{door.title}</span>
                         <span class="door-text">{door.text}</span>
                         <span class="door-cta">

@@ -16,8 +16,8 @@ const categories = Object.entries(t.categories).filter(([key]) =>
 ---
 
 <TrailLayout lang={lang} title={t.blog.title} description={t.blog.description} page="blog">
-    <PageHeader kicker={t.blog.kicker} heading={t.blog.heading} intro={t.blog.intro} />
-    <section class="trail-wrap blog-list" aria-label={t.blog.kicker}>
+    <PageHeader heading={t.blog.heading} intro={t.blog.intro} />
+    <section class="trail-wrap blog-list" aria-label={t.blog.heading.join(' ')}>
         {categories.length > 1 && (
             <div class="blog-filters" role="group" aria-label={t.blog.filterLabel} hidden>
                 <button type="button" data-filter="all" aria-pressed="true">

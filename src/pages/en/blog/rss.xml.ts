@@ -6,8 +6,8 @@ import { sitePath } from '../../../lib/paths';
 import { blogPostPath } from '../../../lib/routes';
 
 export async function GET(context: APIContext) {
-    const posts = await getPosts('fr');
-    const copy = siteCopy.fr.blog;
+    const posts = await getPosts('en');
+    const copy = siteCopy.en.blog;
     return rss({
         title: copy.title,
         description: copy.description,
@@ -16,8 +16,8 @@ export async function GET(context: APIContext) {
             title: post.data.title,
             description: post.data.description,
             pubDate: post.data.date,
-            link: sitePath(blogPostPath(postSlug(post), 'fr')),
+            link: sitePath(blogPostPath(postSlug(post), 'en')),
         })),
-        customData: '<language>fr</language>',
+        customData: '<language>en</language>',
     });
 }

@@ -32,12 +32,6 @@ const indexLabels: Record<string, string> = {
             </div>
         ))}
     </dl>
-    <p class="source-note">
-        {copy.publishedProfile} ·{' '}
-        <time datetime={trailResults.retrievedAt}>
-            {formatDate(trailResults.retrievedAt, lang)}
-        </time>
-    </p>
 </div>
 <div class="results-table-scroll" tabindex="0" role="region" aria-label={copy.resultsRegion}>
     <table>

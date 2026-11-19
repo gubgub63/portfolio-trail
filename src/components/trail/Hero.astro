@@ -22,11 +22,6 @@ const t = siteCopy[lang].home;
                 ? 'Traileur auvergnat. Curieux de la suite.'
                 : 'Trail runner from Auvergne. Curious about what’s next.'}
         </p>
-        <p class="personal-intro">
-            {fr
-                ? 'Je cours sur les sentiers du Puy-de-Dôme, je prépare mes prochains défis et je partage ce que j’apprends en chemin.'
-                : 'I run the trails of Puy-de-Dôme, prepare for new challenges and share what I learn along the way.'}
-        </p>
         <a class="personal-discover" href={href('about', lang)}>
             <span class="round-arrow">
                 <Icon name="chevron" size={22} />
@@ -47,18 +42,7 @@ const t = siteCopy[lang].home;
                 height="450"
                 fetchpriority="high"
             />
-            <figcaption>
-                <span>Enzo, {fr ? 'sur les sentiers.' : 'on the trails.'}</span>
-                <span>UTMB World</span>
-            </figcaption>
         </figure>
-    </div>
-    <div class="personal-hero-footer">
-        <span>Trail & ultra · Puy-de-Dôme, France</span>
-        <a href="#season">
-            {fr ? 'Prochain chapitre : 2027' : 'Next chapter: 2027'}
-            <Icon name="arrow" size={16} />
-        </a>
     </div>
 </section>
 

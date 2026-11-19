@@ -144,7 +144,7 @@ svg {
 }
 .trail-nav-sections a,
 .trail-nav-contact {
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 700;
     min-height: 44px;
     display: flex;
@@ -182,7 +182,7 @@ svg {
     place-items: center;
     min-height: 44px;
     min-width: 36px;
-    font-size: 12px;
+    font-size: 14px;
     color: var(--trail-muted);
 }
 .trail-languages [aria-current] {
@@ -222,16 +222,16 @@ h2 span {
 }
 .trail-caption,
 .source-note {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.7;
     color: var(--trail-muted);
 }
 .personal-hero {
     display: grid;
     grid-template-columns: minmax(0, 1fr) clamp(430px, 36vw, 520px) minmax(0, 1fr);
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: auto 1fr;
     gap: 0 6%;
-    padding-top: 36px;
+    padding-block: 36px 64px;
 }
 .personal-hero-copy {
     display: contents;
@@ -258,20 +258,12 @@ h2 span {
     grid-column: 1;
     grid-row: 2;
     align-self: start;
-    font-size: 17px;
+    font-size: clamp(24px, 2.2vw, 32px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
     margin-top: 60px;
-    max-width: 22ch;
-    line-height: 1.7;
-}
-.personal-intro {
-    grid-column: 1;
-    grid-row: 2;
-    align-self: end;
-    color: var(--trail-muted);
-    font-size: 14px;
-    line-height: 1.9;
-    max-width: 26ch;
-    margin-bottom: 75px;
+    max-width: 13ch;
+    line-height: 1.3;
 }
 .personal-discover {
     grid-column: 3;
@@ -283,7 +275,7 @@ h2 span {
     text-align: center;
     align-items: center;
     gap: 18px;
-    font-size: 13px;
+    font-size: 16px;
     padding: 20px 10px;
     min-height: 54px;
 }
@@ -329,32 +321,6 @@ h2 span {
     object-position: 70% center;
     border-radius: 14px;
 }
-.hero-portrait-frame figcaption {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    margin-top: 18px;
-    font-size: 10px;
-    color: var(--trail-muted);
-}
-.personal-hero-footer {
-    grid-column: 1 / -1;
-    grid-row: 3;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    padding-block: 22px;
-    font-size: 12px;
-    color: var(--trail-muted);
-}
-.personal-hero-footer a {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    color: var(--trail-ink);
-    min-height: 44px;
-}
 .personal-story {
     padding-block: 90px 100px;
 }
@@ -394,7 +360,7 @@ h2 span {
     object-fit: cover;
 }
 .story-photo figcaption {
-    font-size: 11px;
+    font-size: 13px;
     padding: 9px 13px;
     line-height: 18px;
 }
@@ -437,7 +403,7 @@ h2 span {
 .story-chapter-indicator {
     display: flex;
     gap: 22px;
-    font-size: 11px;
+    font-size: 13px;
     color: var(--trail-muted);
 }
 .story-chapter-indicator span {
@@ -480,7 +446,7 @@ h2 span {
 }
 .story-place {
     margin-top: 24px;
-    font-size: 12px;
+    font-size: 14px;
 }
 .home-loop {
     background: var(--trail-night);
@@ -511,7 +477,7 @@ h2 span {
 }
 .loop-facts dt {
     color: var(--trail-night-muted);
-    font-size: 11px;
+    font-size: 13px;
 }
 .loop-facts dd {
     font-size: 23px;
@@ -519,7 +485,7 @@ h2 span {
     font-variant-numeric: tabular-nums;
 }
 .loop-note {
-    font-size: 11px;
+    font-size: 13px;
     color: var(--trail-night-muted);
     margin-top: 18px;
 }
@@ -536,7 +502,7 @@ h2 span {
     align-items: center;
     gap: 18px;
     min-height: 44px;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 700;
     border-bottom: 1px solid currentColor;
 }
@@ -574,7 +540,7 @@ h2 span {
 }
 .trail-caption,
 .source-note {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.7;
     color: var(--trail-muted);
 }
@@ -610,7 +576,7 @@ h2 span {
     gap: 8px;
     align-items: center;
     color: var(--trail-white);
-    font-size: 12px;
+    font-size: 14px;
 }
 .trail-action {
     border-radius: 100px;
@@ -622,7 +588,7 @@ h2 span {
     min-height: 52px;
     background: var(--trail-orange);
     color: var(--trail-on-orange);
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     margin-top: 28px;
     transition: background 180ms;
@@ -669,11 +635,11 @@ h2 span {
 .race-placing span {
     display: block;
     color: var(--trail-muted);
-    font-size: 12px;
+    font-size: 14px;
     margin-top: 7px;
 }
 .race-information time {
-    font-size: 11px;
+    font-size: 13px;
     color: var(--trail-muted);
 }
 .race-information h3 {
@@ -684,7 +650,7 @@ h2 span {
     margin-block: 6px;
 }
 .race-information > p {
-    font-size: 13px;
+    font-size: 15px;
     color: var(--trail-muted);
 }
 .race-numbers {
@@ -704,7 +670,7 @@ h2 span {
     font-size: 15px;
 }
 .race-numbers > span:last-child {
-    font-size: 11px;
+    font-size: 13px;
     color: var(--trail-muted);
 }
 .race-numbers small {
@@ -724,7 +690,7 @@ summary::-webkit-details-marker {
     padding: 20px 0;
 }
 .runner-indexes dt {
-    font-size: 12px;
+    font-size: 14px;
 }
 .runner-indexes dd {
     font-family: var(--trail-display);
@@ -733,7 +699,7 @@ summary::-webkit-details-marker {
 }
 .runner-indexes .index-unrated {
     font-family: var(--trail-body);
-    font-size: 13px;
+    font-size: 15px;
 }
 .results-table-scroll {
     overflow: auto;
@@ -743,7 +709,7 @@ table {
     border-collapse: collapse;
     width: 100%;
     text-align: left;
-    font-size: 12px;
+    font-size: 14px;
     font-variant-numeric: tabular-nums;
 }
 caption {
@@ -761,7 +727,7 @@ th {
 }
 tbody time {
     display: block;
-    font-size: 10px;
+    font-size: 13px;
     font-weight: 400;
     margin-top: 6px;
 }
@@ -805,13 +771,13 @@ tbody time {
     line-height: 1.1;
 }
 .journal-audience dt {
-    font-size: 11px;
+    font-size: 13px;
     margin-top: 8px;
     max-width: 21ch;
 }
 .journal-copy .trail-caption {
     color: var(--trail-muted);
-    font-size: 10px;
+    font-size: 13px;
 }
 .journal-video {
     position: relative;
@@ -870,7 +836,7 @@ tbody time {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 12px;
+    font-size: 14px;
 }
 .partnership-options {
     border-top: 1px solid var(--trail-line);
@@ -937,7 +903,7 @@ tbody time {
     display: flex;
     align-items: center;
     gap: 30px;
-    font-size: 12px;
+    font-size: 14px;
 }
 .contact-socials a {
     display: flex;
@@ -953,7 +919,7 @@ tbody time {
     padding-block: 20px;
     border-bottom: 1px solid var(--trail-line);
     color: var(--trail-muted);
-    font-size: 12px;
+    font-size: 14px;
 }
 .trail-credits summary {
     min-height: 44px;
@@ -1168,7 +1134,7 @@ tbody time {
     .project-location {
         bottom: 24px;
         left: 30px;
-        font-size: 11px;
+        font-size: 13px;
     }
     .trail-action {
         width: auto;
@@ -1194,14 +1160,14 @@ tbody time {
         font-size: 32px;
     }
     .race-placing span {
-        font-size: 10px;
+        font-size: 13px;
     }
     .race-information h3 {
         font-size: 18px;
         line-height: 1.45;
     }
     .race-information > p {
-        font-size: 12px;
+        font-size: 14px;
     }
     .race-numbers {
         grid-column: 2;
@@ -1214,7 +1180,7 @@ tbody time {
         font-size: 22px;
     }
     .race-numbers > span:nth-child(2) {
-        font-size: 13px;
+        font-size: 15px;
     }
     .race-numbers > span:last-child {
         flex-basis: 100%;
@@ -1237,7 +1203,7 @@ tbody time {
         margin-bottom: 26px;
     }
     .journal-copy > .trail-text-link {
-        font-size: 12px;
+        font-size: 14px;
         gap: 12px;
     }
     .journal-audience {
@@ -1286,7 +1252,7 @@ tbody time {
     .contact-socials > span {
         margin-left: 0;
         flex-basis: 100%;
-        font-size: 11px;
+        font-size: 13px;
     }
     .trail-back-top {
         display: none;
@@ -1324,20 +1290,16 @@ tbody time {
         min-height: 450px;
     }
     .personal-role {
-        font-size: 15px;
+        font-size: 24px;
         margin-top: 40px;
-    }
-    .personal-intro {
-        font-size: 13px;
-        margin-bottom: 50px;
     }
 }
 @media (max-width: 1000px) {
     .personal-hero {
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto auto auto auto auto;
+        grid-template-rows: auto auto auto;
         gap: 0 20px;
-        padding-top: 28px;
+        padding-block: 28px 48px;
     }
     .personal-hero h1 {
         grid-column: 1 / -1;
@@ -1356,22 +1318,18 @@ tbody time {
     .hero-portrait-frame {
         width: 100%;
     }
-    .hero-portrait-frame figcaption {
-        font-size: 9px;
-        gap: 10px;
-        margin-top: 12px;
-    }
     .personal-role {
         grid-column: 1;
         grid-row: 3;
-        font-size: 15px;
-        margin: 8px 0 0;
-        max-width: 25ch;
+        align-self: center;
+        font-size: clamp(20px, 5.4vw, 26px);
+        margin: 0;
+        max-width: 14ch;
     }
     .personal-discover {
         grid-column: 2;
         grid-row: 3;
-        font-size: 11px;
+        font-size: 14px;
         gap: 10px;
         padding: 0;
         margin: 0;
@@ -1380,27 +1338,6 @@ tbody time {
     .personal-discover .round-arrow {
         width: 48px;
         height: 48px;
-    }
-    .personal-intro {
-        grid-column: 1 / -1;
-        grid-row: 4;
-        margin: 26px 0;
-        font-size: 14px;
-        max-width: 56ch;
-    }
-    .personal-hero-footer {
-        grid-column: 1 / -1;
-        grid-row: 5;
-        font-size: 10px;
-        gap: 20px;
-        padding-block: 14px;
-    }
-    .personal-hero-footer a {
-        font-size: 10px;
-        gap: 8px;
-    }
-    .personal-hero-footer > span {
-        max-width: 22ch;
     }
 }
 
@@ -1437,7 +1374,7 @@ ul.trail-nav-sections {
     padding: 0 14px;
     border: 1px solid var(--trail-line);
     border-radius: 100px;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
 }
 .trail-menu-icon {
@@ -1523,7 +1460,7 @@ ul.trail-nav-sections {
 
 /* Page headers */
 .page-kicker {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -1573,7 +1510,7 @@ ul.trail-nav-sections {
     gap: 12px;
     min-height: 44px;
     color: var(--trail-muted);
-    font-size: 12px;
+    font-size: 14px;
     margin-bottom: 30px;
 }
 .back-link svg {
@@ -1604,7 +1541,7 @@ ul.trail-nav-sections {
     margin-top: 6px;
 }
 .results-subtitle {
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -1646,7 +1583,7 @@ ul.trail-nav-sections {
     padding-top: 24px;
 }
 .project-status {
-    font-size: 11px;
+    font-size: 13px;
     color: var(--trail-muted);
 }
 .project-card-title {
@@ -1705,7 +1642,7 @@ ul.trail-nav-sections {
     padding: 24px 24px 0 0;
 }
 .season-date {
-    font-size: 12px;
+    font-size: 14px;
     color: var(--trail-muted);
 }
 .season-name {
@@ -1772,7 +1709,7 @@ ul.trail-nav-sections {
     margin-top: 32px;
 }
 .race-facts dt {
-    font-size: 11px;
+    font-size: 13px;
     color: var(--trail-muted);
 }
 .race-facts dd {
@@ -1799,7 +1736,7 @@ ul.trail-nav-sections {
     min-height: 44px;
 }
 .project-pager a span {
-    font-size: 11px;
+    font-size: 13px;
     color: var(--trail-muted);
 }
 .project-pager strong {
@@ -1820,7 +1757,7 @@ ul.trail-nav-sections {
     transform: rotate(45deg);
 }
 .project-pager .project-pager-all {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     border-bottom: 1px solid currentColor;
     justify-content: center;
@@ -1835,7 +1772,7 @@ ul.trail-nav-sections {
 }
 .home-loop-photo figcaption {
     margin-top: 14px;
-    font-size: 12px;
+    font-size: 14px;
     color: var(--trail-night-muted);
 }
 .about-next {
@@ -1860,7 +1797,7 @@ ul.trail-nav-sections {
 }
 .about-pillars span {
     display: block;
-    font-size: 12px;
+    font-size: 14px;
     color: var(--trail-muted);
     margin-bottom: 8px;
 }
@@ -1883,6 +1820,99 @@ ul.trail-nav-sections {
 }
 .results-index-heading .trail-text-link {
     margin-top: 0;
+}
+
+/* Home: about me */
+.home-about {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 10%;
+    align-items: center;
+    padding-block: clamp(70px, 9vw, 120px);
+    border-top: 1px solid var(--trail-line);
+}
+.home-about-photo img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 24px 140px 24px 90px;
+}
+.home-about-copy .section-heading-row {
+    grid-template-columns: 1fr;
+    margin-bottom: 28px;
+}
+.home-about-copy > p {
+    max-width: 58ch;
+    color: var(--trail-muted);
+    font-size: 17px;
+    line-height: 1.85;
+}
+.home-about-copy > p + p {
+    margin-top: 18px;
+}
+.home-about-copy .trail-text-link {
+    margin-top: 28px;
+}
+
+/* Home: UTMB / ITRA indexes */
+.home-indexes {
+    padding-block: 0 clamp(70px, 9vw, 120px);
+}
+.index-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+    gap: clamp(20px, 3vw, 44px);
+}
+.index-card {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 14px;
+    border-top: 1px solid var(--trail-line);
+    padding-top: 22px;
+}
+.index-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--trail-muted);
+}
+.index-card-score {
+    font-family: var(--trail-display);
+    font-size: clamp(64px, 8vw, 104px);
+    line-height: 1;
+    color: var(--trail-orange);
+    font-variant-numeric: tabular-nums;
+}
+.index-card-split {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 32px;
+}
+.index-card-split dt {
+    font-size: 13px;
+    color: var(--trail-muted);
+}
+.index-card-split dd {
+    font-size: 24px;
+    font-variant-numeric: tabular-nums;
+}
+.index-card-meta {
+    font-size: 13px;
+    color: var(--trail-muted);
+}
+@media (max-width: 760px) {
+    .home-about {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+    .home-about-photo {
+        max-width: 320px;
+    }
+    .home-about-copy > p {
+        font-size: 15px;
+    }
 }
 
 /* Journal */
@@ -1913,7 +1943,7 @@ ul.trail-nav-sections {
     display: flex;
     flex-wrap: wrap;
     gap: 6px 14px;
-    font-size: 12px;
+    font-size: 14px;
     color: var(--trail-muted);
 }
 .post-card-meta > :first-child {
@@ -1936,7 +1966,7 @@ ul.trail-nav-sections {
     text-decoration-thickness: 1px;
 }
 .post-card-race {
-    font-size: 13px;
+    font-size: 15px;
     font-variant-numeric: tabular-nums;
     margin-bottom: 8px;
 }
@@ -1988,7 +2018,7 @@ ul.trail-nav-sections {
     border: 1px solid var(--trail-line);
     border-radius: 100px;
     background: transparent;
-    font-size: 13px;
+    font-size: 15px;
 }
 .blog-filters button:hover {
     border-color: var(--trail-ink);
@@ -2034,7 +2064,7 @@ ul.trail-nav-sections {
     background: var(--trail-journal-bg);
 }
 .race-card h2 {
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -2142,7 +2172,7 @@ ul.trail-nav-sections {
     font-variant-numeric: tabular-nums;
 }
 .glance-grid dt {
-    font-size: 12px;
+    font-size: 14px;
     color: var(--trail-muted);
 }
 .glance .source-note {
@@ -2207,7 +2237,7 @@ ul.trail-nav-sections {
 }
 .partnership-number {
     display: block;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 700;
     color: var(--trail-orange);
     margin-bottom: 18px;
@@ -2225,7 +2255,7 @@ ul.trail-nav-sections {
     gap: 16px;
 }
 .partnership-card dt {
-    font-size: 11px;
+    font-size: 13px;
     color: var(--trail-muted);
     margin-bottom: 4px;
 }
@@ -2318,7 +2348,7 @@ ul.trail-nav-sections {
     border-color: transparent;
 }
 .door-kicker {
-    font-size: 12px;
+    font-size: 14px;
     color: var(--trail-muted);
 }
 .door-grid li:first-child .door-kicker,
@@ -2341,7 +2371,7 @@ ul.trail-nav-sections {
     justify-content: space-between;
     gap: 16px;
     padding-top: 18px;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 700;
 }
 .door:hover {
@@ -2366,11 +2396,11 @@ ul.trail-nav-sections {
 }
 .trail-footer-brand p {
     margin-top: 10px;
-    font-size: 12px;
+    font-size: 14px;
     color: var(--trail-muted);
 }
 .trail-footer-title {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     margin-bottom: 10px;
 }
@@ -2404,7 +2434,7 @@ ul.trail-nav-sections {
     padding-block: 8px 0;
 }
 .trail-footer-base > p {
-    font-size: 11px;
+    font-size: 13px;
     color: var(--trail-muted);
     padding-top: 20px;
 }

@@ -10,7 +10,7 @@ export default defineConfig({
     devToolbar: { enabled: false },
     integrations: [
         sitemap({
-            i18n: { defaultLocale: 'en', locales: { en: 'en-GB', fr: 'fr-FR' } },
+            i18n: { defaultLocale: 'fr', locales: { en: 'en-GB', fr: 'fr-FR' } },
         }),
     ],
     vite: {

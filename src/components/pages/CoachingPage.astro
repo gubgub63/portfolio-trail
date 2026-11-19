@@ -19,7 +19,7 @@ const waitlistHref = mailto(profile.email, c.waitlistSubject, c.waitlistBody);
     page="coaching"
     contactHref={waitlistHref}
 >
-    <PageHeader kicker={c.kicker} heading={c.heading} intro={c.intro}>
+    <PageHeader heading={c.heading} intro={c.intro}>
         <a class="trail-action" href="#waitlist">
             {c.waitlistTitle}
             <Icon name="arrow" size={18} />
@@ -69,7 +69,6 @@ const waitlistHref = mailto(profile.email, c.waitlistSubject, c.waitlistBody);
     <section id="waitlist" class="waitlist" aria-labelledby="waitlist-heading">
         <div class="trail-wrap waitlist-inner">
             <div>
-                <p class="page-kicker">{c.kicker}</p>
                 <h2 id="waitlist-heading">{c.waitlistTitle}</h2>
             </div>
             <div>

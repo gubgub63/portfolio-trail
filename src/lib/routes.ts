@@ -2,18 +2,18 @@ import { sitePath } from './paths';
 
 export type Lang = 'en' | 'fr';
 
-/** Every page of the site, with its English and French path. */
+/** Every page of the site, with its French (default, at the root) and English path. */
 export const routes = {
-    home: { en: '/', fr: '/fr/' },
-    about: { en: '/about/', fr: '/fr/a-propos/' },
-    projects: { en: '/projects/', fr: '/fr/projets/' },
-    gr441: { en: '/projects/gr441/', fr: '/fr/projets/gr441/' },
-    utlac: { en: '/projects/utlac/', fr: '/fr/projets/utlac/' },
-    vda: { en: '/projects/vda/', fr: '/fr/projets/vda/' },
-    results: { en: '/results/', fr: '/fr/resultats/' },
-    blog: { en: '/blog/', fr: '/fr/blog/' },
-    partnerships: { en: '/partnerships/', fr: '/fr/partenariats/' },
-    coaching: { en: '/coaching/', fr: '/fr/coaching/' },
+    home: { fr: '/', en: '/en/' },
+    about: { fr: '/a-propos/', en: '/en/about/' },
+    projects: { fr: '/projets/', en: '/en/projects/' },
+    gr441: { fr: '/projets/gr441/', en: '/en/projects/gr441/' },
+    utlac: { fr: '/projets/utlac/', en: '/en/projects/utlac/' },
+    vda: { fr: '/projets/vda/', en: '/en/projects/vda/' },
+    results: { fr: '/resultats/', en: '/en/results/' },
+    blog: { fr: '/blog/', en: '/en/blog/' },
+    partnerships: { fr: '/partenariats/', en: '/en/partnerships/' },
+    coaching: { fr: '/coaching/', en: '/en/coaching/' },
 } as const;
 
 export type RouteKey = keyof typeof routes;

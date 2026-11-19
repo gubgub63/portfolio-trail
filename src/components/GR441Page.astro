@@ -35,7 +35,6 @@ const contactHref = mailto(profile.email, c.mailSubject, c.mailBody);
             </a>
             <div class="gr-hero-grid">
                 <div class="gr-hero-copy">
-                    <p class="gr-kicker">{c.eyebrow}</p>
                     <h1 id="gr-title">
                         GR441<span>.</span>
                     </h1>
@@ -64,7 +63,6 @@ const contactHref = mailto(profile.email, c.mailSubject, c.mailBody);
                         <span>Auvergne, France</span>
                         <Icon name="mountain" size={22} />
                     </div>
-                    <figcaption>{c.landscapeCaption}</figcaption>
                 </figure>
             </div>
             <div class="gr-status">
@@ -101,7 +99,6 @@ const contactHref = mailto(profile.email, c.mailSubject, c.mailBody);
             aria-labelledby="gr-intention-title"
         >
             <div class="gr-section-heading">
-                <p class="gr-kicker">{c.objectiveLabel}</p>
                 <h2 id="gr-intention-title">{c.objectiveTitle}</h2>
             </div>
             <div class="gr-intention-copy">
@@ -137,7 +134,6 @@ const contactHref = mailto(profile.email, c.mailSubject, c.mailBody);
         <section id="parcours" class="gr-terrain" aria-labelledby="gr-terrain-title">
             <div class="gr-terrain-inner trail-wrap">
                 <div class="gr-terrain-copy">
-                    <p class="gr-kicker">{c.routeLabel}</p>
                     <h2 id="gr-terrain-title">{c.routeTitle}</h2>
                     <p class="gr-lead">{c.routeIntro}</p>
                     <p class="gr-terrain-note">{c.routeNote}</p>
@@ -153,7 +149,6 @@ const contactHref = mailto(profile.email, c.mailSubject, c.mailBody);
             aria-labelledby="gr-preparation-title"
         >
             <div class="gr-section-heading">
-                <p class="gr-kicker">{c.preparationLabel}</p>
                 <h2 id="gr-preparation-title">{c.preparationTitle}</h2>
                 <p>{c.preparationIntro}</p>
             </div>
@@ -182,7 +177,6 @@ const contactHref = mailto(profile.email, c.mailSubject, c.mailBody);
                     <span>2026</span>
                 </div>
                 <div>
-                    <p class="gr-kicker">{c.evidenceLabel}</p>
                     <h2 id="gr-evidence-title">{c.evidenceTitle}</h2>
                     <p>{c.evidenceText}</p>
                 </div>
@@ -228,7 +222,6 @@ const contactHref = mailto(profile.email, c.mailSubject, c.mailBody);
                 </span>
             </a>
             <div class="gr-diary-copy">
-                <p class="gr-kicker">{c.diaryLabel}</p>
                 <h2 id="gr-diary-title">{c.diaryTitle}</h2>
                 <p class="gr-lead">{c.diaryText}</p>
                 <a
@@ -240,13 +233,11 @@ const contactHref = mailto(profile.email, c.mailSubject, c.mailBody);
                     {c.tiktok}
                     <Icon name="arrow" size={18} />
                 </a>
-                <p class="gr-diary-note">{c.diaryCaption}</p>
             </div>
         </section>
 
         <section id="contact" class="gr-contact" aria-labelledby="gr-contact-title">
             <div class="gr-contact-inner trail-wrap">
-                <p class="gr-kicker">{c.contactLabel}</p>
                 <h2 id="gr-contact-title">{c.contactTitle}</h2>
                 <p>{c.contactText}</p>
                 <a class="trail-action" href={contactHref}>
